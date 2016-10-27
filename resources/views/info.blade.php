@@ -2,23 +2,38 @@
 @section("content")
 
 <div style='margin-top:50px;' >
-    <div id="map" style="width:100%;height:500px"></div>
-    <Script>
- function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var mapOptions = {
-    center: new google.maps.LatLng(51.5, -0.2),
-    zoom: 10
-  }
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-}
-</script>    
-
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
-
-
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Delicius Pizza</h3>
+    <div id="map"></div>
+    <script>
         
-        
-        
+      function initMap() {
+        var uluru = {lat: 47.0196894, lng: 28.83098689999997};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+          
+          
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZKGfTHWTmiDWcRX8Vosk3cXbMxPSGJN8&callback=initMap">
+    </script>
+  </body>
+</html>   
   @endsection

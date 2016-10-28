@@ -13,7 +13,7 @@
 
 Route::get('/', "Controller@home" );
 Route::get('/articleon',"Controller@arton");
-Route::get('/articles',"Controller@articles");
+Route::get('/panel',"Controller@articles");
 Route::get('/info',"Controller@info");
 Route::get('/login',"Controller@logare");
 Route::get('/order-{id}',"Controller@oneprodus");

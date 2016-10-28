@@ -22,7 +22,8 @@ class Controller extends BaseController
     return view('articles', ['data' => $data]);
     }
     public function articles(){
-        return view("menuarticles");
+        $data= DB::table("users")->get();
+        return view('menuarticles', ['data' => $data]);
     }
     
     public function  info(){

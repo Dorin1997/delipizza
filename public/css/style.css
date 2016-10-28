@@ -381,6 +381,18 @@ a:hover{
 #supl{
     margin-left:50px;
   display: none;
+}
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+    padding: 12px;
+   
+    
 }
 

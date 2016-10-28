@@ -40,9 +40,61 @@
             </div>
         </div>
     </nav>
+    <div class="col-md-5 ">
+        
+        <table class="tableedit">
+            <tr>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <tr>
+                <td>User  </td>
+                <td><input id="name" type="text" name="nume" readonly="readonly" value="  {{Auth::user() -> name }}" </td>
+                <td><button   id="Aname" </button> Modifica </td>
+            </tr>
+            
+            <tr>
+                <td>E-mail  </td>
+                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->email}}" </td>
+                <td><button  </button> Modifica </td>
+            </tr>
+            
+               <tr>
+                <td>Number Phone  </td>
+                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->number}}" </td>
+                <td><button   </button> Modifica </td>
+            </tr>
+            
+                <tr>
+                <td>Address  </td>
+                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->adr}}" </td>
+                <td> <button   </button> Modifica </td>
+            </tr>
+        </table>
+     
+        
+      
+        
+        
+      
+<script type="text/javascript">
+ 
 
+   $('Aname').click(function(){
+
+         $(':input').removeAttr('readonly'); 
+    
+       
+    
+});
+</script>
+        
+     
+       
   
-
+       </div>
+    
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <div style="height: 615px;"> </div>

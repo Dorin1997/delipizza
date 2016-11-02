@@ -35,7 +35,9 @@
         </div>
          
         <div class="modal-body">
-            <form>
+            <form id="{{$b->id}}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    
             <table class="tableedit">
             <tr>
                 <th> </th>
@@ -44,25 +46,25 @@
             </tr>
             <tr>
                 <td>Nume  </td>
-                <td><input id="name" type="text" name="nume"  value="{{$b->name}} " </td>
+                <td><input id="nume{{$b->id}}" type="text" name="nume"  value="{{$b->name}} " </td>
                 
             </tr>
             
             <tr>
                 <td>Descriere </td>
-                <td> <textarea name="Text1" cols="40" rows="5"   > {{$b->ingrediente}} </textarea> </td>
+                <td> <textarea id="descriere{{$b->id}}" cols="40" rows="5"   > {{$b->ingrediente}} </textarea> </td>
                
             </tr>
             
                <tr>
                 <td>Pret</td>
-                <td> <input type="text" name="nume"  value="{{$b->price}} " </td>
+                <td> <input type="text" id="price{{$b->id}}"  value="{{$b->price}} " </td>
                 
             </tr>
             
                 <tr>
                 <td>Poza  </td>
-                <td> <input type="text" name="nume"  value="{{$b->image}} " </td>
+                <td> <input type="text" id="image{{$b->id}}"  value="{{$b->image}} " </td>
                 
             </tr>
             
@@ -72,7 +74,7 @@
            
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left" >   Modifica  </button>
+            <button class="btn btn-primary pull-left add"  id="{{$b->id}}" >   Modifica  </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -88,7 +90,29 @@
      
 </div>
    
-
+<script> 
+    $("body").on("click",".add" , function(){
+       id=$(this).attr("id");
+       
+       
+       var form=new FormData(document.getElementById(id));
+      $.ajax({
+          type:"get",
+          url:"{{URL('/update')}}",
+          data:form,
+          cache:false,
+          ContentType:false,
+          processData:false,
+          success:function(data){
+              alert(data);
+          }
+            
+            });
+      
+      
+            
+    });
+    </script>
 
 
 

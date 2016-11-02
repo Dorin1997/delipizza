@@ -39,3 +39,5 @@ Route::get('/ac', 'Controller@activcom');
 Route::get('/ic', 'Controller@inactivcom');
 Route::get('/user', 'Controller@utilizatori');
 Route::get('/pz', 'Controller@pizza');
+
+Route::get('/update', 'Controller@updpizz');

@@ -18,7 +18,7 @@ class CreateTipPizza extends Migration
             $table->string('name');
            $table->text('ingrediente');
            $table->decimal('price');
-           $table->string('image');
+           $table->string('image')->default("/imag/americana.jpg");
             });
     }
 

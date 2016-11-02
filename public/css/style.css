@@ -11,6 +11,7 @@ body{
 	max-width: 960px;
 	margin: auto;
 }
+
 header{
 	background-color:#507299;
 }
@@ -391,7 +392,7 @@ table {
 
 td, th {
     text-align: left;
-    padding: 12px;
+   
    
     
 }

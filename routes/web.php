@@ -34,3 +34,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/ac', 'Controller@activcom');
+Route::get('/ic', 'Controller@inactivcom');
+Route::get('/user', 'Controller@utilizatori');
+Route::get('/pz', 'Controller@pizza');

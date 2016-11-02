@@ -21,11 +21,9 @@ class Controller extends BaseController
         $data = DB::table("tip_pizza")->get();
     return view('articles', ['data' => $data]);
     }
-    public function articles(){
-        $data= DB::table("users")->get();
-        return view('menuarticles', ['data' => $data]);
-    }
     
+    
+  
     public function  info(){
     return view("info");
     }
@@ -48,6 +46,109 @@ class Controller extends BaseController
     }
   
     
-  
+    
+    //--------  admin
+    
+    public function articles(){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+       
+        
+        return view('menuarticles');
+    }
+    
+    public function activcom (){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+        
+         $data = DB::table("tip_pizza")->get();
+    return view('activcom', ['data' => $data]);
+       
+        
+    }
+     public function inactivcom (){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+        
+         $data = DB::table("tip_pizza")->get();
+    return view('inactiv', ['data' => $data]);
+       
+        
+    }
+    
+    public function utilizatori (){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+        
+         $data = DB::table("users")->get();
+    return view('user', ['data' => $data]);
+       
+        
+    }
+   
+    public function pizza (){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+        
+         $data = DB::table("tip_pizza")->get();
+    return view('pizza', ['data' => $data]);
+       
+        
+    }
+    
+    
+    
+    
+    
     
 }

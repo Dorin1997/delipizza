@@ -149,9 +149,29 @@ class Controller extends BaseController
     }
     
     public function updpizz(Request $a){
-        
-        return $a->nume;
+      DB::table("tip_pizza")
+              ->where('id',"=",$a->id)
+              ->update(['name'=>$a->nume,
+                        'ingrediente'=>$a->descriere,
+                        'price'=>$a->price,
+                        'image'=>$a->poza]);
+      
+        return 'true';
     }
+    
+       public function addpizz(Request $a){
+      
+            $li=DB::getPdo()->lastInsertId();
+      DB::table("tip_pizza")
+              ->insert(['id'=>$li++,
+                        'name'=>$a->nume,
+                        'ingrediente'=>$a->descriere,
+                        'price'=>$a->price,
+                        'image'=>$a->poza]);
+      
+        return 'true';
+    }
+    
     
     
     

@@ -41,3 +41,4 @@ Route::get('/user', 'Controller@utilizatori');
 Route::get('/pz', 'Controller@pizza');
 
 Route::get('/update', 'Controller@updpizz');
+Route::get('/create', 'Controller@addpizz');

@@ -161,9 +161,9 @@ class Controller extends BaseController
     
        public function addpizz(Request $a){
       
-            $li=DB::getPdo()->lastInsertId();
+           
       DB::table("tip_pizza")
-              ->insert(['id'=>$li++,
+              ->insert([
                         'name'=>$a->nume,
                         'ingrediente'=>$a->descriere,
                         'price'=>$a->price,
@@ -172,7 +172,13 @@ class Controller extends BaseController
         return 'true';
     }
     
-    
+    public function delpizz(Request $a){
+      DB::table("tip_pizza")
+              ->where('id',"=",$a->id)
+              ->delete();
+      
+        return 'true';
+    }
     
     
     

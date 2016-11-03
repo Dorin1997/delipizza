@@ -42,3 +42,4 @@ Route::get('/pz', 'Controller@pizza');
 
 Route::get('/update', 'Controller@updpizz');
 Route::get('/create', 'Controller@addpizz');
+Route::get('/delete', 'Controller@delpizz');

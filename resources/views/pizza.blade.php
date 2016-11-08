@@ -126,7 +126,7 @@
             
                <tr>
                 <td>Pret</td>
-                <td> <input type="text" id="price{{$b->id}}"  value="{{$b->price}}" </td>
+                <td> <input type="number" id="price{{$b->id}}" min='0' onkeypress='return event.charCode !== 45 ' value="{{$b->price}}" </td>
                 
             </tr>
             

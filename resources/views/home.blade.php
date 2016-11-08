@@ -91,10 +91,14 @@
             
             <tr>
                 <td>New Password</td>
-                <td> <input type="text" name="nume" required id="adre" value="" </td>
+                <td> <input type="password" name="nume" required id="password" value="">
+                            
+                
                 </td>
                 
             </tr>
+            
+            
             
                <tr>
               <td>Number Phone  </td>
@@ -150,6 +154,7 @@
                 { id:id,
                   nume:$("#nume").val(),
                   email:$("#email").val(),
+                  password:$("#password").val(),
                   number:$("#number").val(),
                   adre:$("#adre").val()
             

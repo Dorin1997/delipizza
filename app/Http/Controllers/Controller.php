@@ -188,6 +188,7 @@ class Controller extends BaseController
               ->where('id',"=",$a->id)
               ->update(['name'=>$a->nume,
                         'email'=>$a->email,
+                         'password'=>bcrypt($a->password),
                         'number'=>$a->number,
                         'adr'=>$a->adre]);
       

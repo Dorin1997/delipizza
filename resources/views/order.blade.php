@@ -16,7 +16,7 @@
                 <tr> <th> <span class="name" >({{$produs->name}})</span> Ingrediente :{{$produs->ingrediente}} </th>
                             <th> 
                                 <form class="formnr">
-                                   <input type="text" size="3" value="1" >
+                                   <input type="number" size="3" min='1' value="1" >
                                 </form>      
                             </th>
                      <th> ${{$produs->price}} </th> </tr>

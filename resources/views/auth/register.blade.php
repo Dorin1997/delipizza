@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                   
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
@@ -77,8 +78,11 @@
                                 <label for="number" class="col-md-4 control-label">Phone Number</label>
 
                                 <div class="col-md-6">
-                                    <input id="number" type="text" class="form-control" name="number"   required>
+                                   
 
+                                    <label for="number">(format: xxxxxxxxx)</label><br/>
+                                    <input id="number" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  name="number" class="form-control" pattern="^\d{3}\d{3}\d{3}$" required >
+                                    
                                     @if ($errors->has('number'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('number') }}</strong>

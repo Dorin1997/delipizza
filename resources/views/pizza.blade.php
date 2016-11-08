@@ -44,13 +44,13 @@
             
                <tr>
                 <td>Pret</td>
-                <td> <input type="number" id="price"  value="" </td>
+                <td> <input type="number" id="price"  value=""></td>
                 
             </tr>
             
                 <tr>
                 <td>Poza  </td>
-                <td> <input type="text" id="image"  value=""> 
+                <td> <input type="text" id="image"  value=""><br>
                     <input type="file" id="file" class="custom-file-input">
  </td>
                 
@@ -114,7 +114,7 @@
             </tr>
             <tr>
                 <td>Nume  </td>
-                <td><input id="nume{{$b->id}}" type="text" name="nume"  value="{{$b->name}} " </td>
+                <td><input id="nume{{$b->id}}" type="text" name="nume"  value="{{$b->name}}" </td>
                 
             </tr>
             
@@ -126,13 +126,13 @@
             
                <tr>
                 <td>Pret</td>
-                <td> <input type="text" id="price{{$b->id}}"  value="{{$b->price}} " </td>
+                <td> <input type="text" id="price{{$b->id}}"  value="{{$b->price}}" </td>
                 
             </tr>
             
                 <tr>
                 <td>Poza  </td>
-                <td> <input type="text" id="image{{$b->id}}"  value="{{$b->image}} ">  
+                <td> <input type="text" id="image{{$b->id}}"  value="{{$b->image}}">  
                     <input type="file" id="file" class="custom-file-input">
                 </td>
                 

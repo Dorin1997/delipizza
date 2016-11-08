@@ -183,5 +183,16 @@ class Controller extends BaseController
     
     
     
+    public function upduser(Request $a){
+      DB::table("users")
+              ->where('id',"=",$a->id)
+              ->update(['name'=>$a->nume,
+                        'email'=>$a->email,
+                        'number'=>$a->number,
+                        'adr'=>$a->adre]);
+      
+        return 'true';
+    }
+    
     
 }

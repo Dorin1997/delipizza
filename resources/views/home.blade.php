@@ -42,53 +42,92 @@
     </nav>
     <div class="col-md-5 ">
         
-        <table class="tableedit">
+        
+        
+        
+        <!------------------- -->
+        
+        
+        
+        <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mod">Modificare date account</button>
+  
+
+                <div class="head" style="margin-top:65px;">
+       
+            
+       <!-- add funcha -->
+        
+           <div class="modal fade" id="mod" role="dialog">
+          <div class="modal-dialog">
+              
+             
+     <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Pizza</h4>
+        </div>
+         
+        <div class="modal-body">
+            <form id="id">
+  
+    
+            <table class="tableedit">
             <tr>
                 <th> </th>
                 <th> </th>
                 <th> </th>
             </tr>
             <tr>
-                <td>User  </td>
-                <td><input id="name" type="text" name="nume" readonly="readonly" value="  {{Auth::user() -> name }}" </td>
-                <td><button   id="Aname" </button> Modifica </td>
+                <td>Name User  </td>
+                <td><input id="nume" type="text" name="nume" required  value="{{Auth::user() -> name }}" </td>
+                
             </tr>
             
             <tr>
-                <td>E-mail  </td>
-                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->email}}" </td>
-                <td><button  </button> Modifica </td>
+                <td>E-mail </td>
+                <td> <input type="email" name="nume" required id="email"  value="{{Auth::user() ->email}}" </td>
+               
+            </tr>
+            
+            <tr>
+                <td>New Password</td>
+                <td> <input type="text" name="nume" required id="adre" value="" </td>
+                </td>
+                
             </tr>
             
                <tr>
-                <td>Number Phone  </td>
-                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->number}}" </td>
-                <td><button   </button> Modifica </td>
+              <td>Number Phone  </td>
+                <td> <input type="text" name="nume" required id="number" value="{{Auth::user() ->number}}" </td>
+                
             </tr>
             
                 <tr>
                 <td>Address  </td>
-                <td> <input type="text" name="nume" readonly="true" value="  {{Auth::user() ->adr}}" </td>
-                <td> <button   </button> Modifica </td>
+                <td> <input type="text" name="nume" required id="adre" value="{{Auth::user() ->adr}}" </td>
+                </td>
+                
             </tr>
+            
+            
         </table>
-     
+            
+           
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary pull-left add"  id="{{Auth::user()->id}}" >   Adauga  </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           </form>
+        </div>
+      </div>
+          </div>
+           </div>
         
-      
-        
-        
-      
-<script type="text/javascript">
- 
-
-   $('Aname').click(function(){
-
-         $(':input').removeAttr('readonly'); 
-    
        
-    
-});
-</script>
+        
+       
+      
+
         
      
        
@@ -96,7 +135,32 @@
        </div>
     
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    
+    <script> 
+  
+    
+    
+     $("body").on("click",".add",function() {
+        id=$(this).attr("id");
+      
+        $.ajax({  
+            type: 'GET',  
+            url: "{{URL('/updateu')}}", 
+            data: 
+                { id:id,
+                  nume:$("#nume").val(),
+                  email:$("#email").val(),
+                  number:$("#number").val(),
+                  adre:$("#adre").val()
+            
+                },
+            success: function(data) {
+              if (data==='true'){location.reload();}
+            }
+        });
+   
+    });
+    </script>
     <div style="height: 615px;"> </div>
 
 

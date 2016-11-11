@@ -195,5 +195,12 @@ class Controller extends BaseController
         return 'true';
     }
     
+    public function modifdrept(Request $a){
+        DB::table("users")
+                ->where('id',"=",$a->id)
+                ->update(['admin'=>$a->adm]);
+        return 'true';
+    }
+    
     
 }

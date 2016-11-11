@@ -45,3 +45,4 @@ Route::get('/create', 'Controller@addpizz');
 Route::get('/delete', 'Controller@delpizz');
 
 Route::get('/updateu', 'Controller@upduser');
+Route::get('/upadm', 'Controller@modifdrept');

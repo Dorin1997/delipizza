@@ -68,7 +68,7 @@ class RegisterController extends Controller
        
         
         $result=DB::table('users')->get();
-       if (empty($result))
+       if (!$result->isEmpty())
        
           {
            
@@ -79,7 +79,7 @@ class RegisterController extends Controller
            'number'=> $data['number'],
            'adr'=> $data['adr'],
             'password' => bcrypt($data['password']),
-               'admin'=>1,
+            
          ]);
      }  else {
            return User::create([
@@ -88,6 +88,7 @@ class RegisterController extends Controller
            'number'=> $data['number'],
            'adr'=> $data['adr'],
             'password' => bcrypt($data['password']),
+                  'admin'=>'1',
          ]);
          
            

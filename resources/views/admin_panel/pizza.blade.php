@@ -50,9 +50,13 @@
             
                 <tr>
                 <td>Poza  </td>
-                <td> <input type="text" id="image"  value=""><br>
-                    <input type="file" id="file" class="custom-file-input">
- </td>
+               <td>  <form method="POST" action="getdata.php" enctype="multipart/form-data">
+                    <input type="file" name="myimage">
+
+                   </form>
+                       
+                 
+               </td>
                 
             </tr>
             
@@ -60,9 +64,12 @@
         </table>
             </form>
            
+            
+            
+            
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left create"   >   Adauga  </button>
+            <button class="btn btn-primary pull-left create"  value="Upload Image" >   Adauga  </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -162,7 +169,10 @@
          
      
 </div>
-   
+  
+
+  
+  
 <script> 
    $("body").on("click",".add",function() {
         id=$(this).attr("id");

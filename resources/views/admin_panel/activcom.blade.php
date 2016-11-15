@@ -1,7 +1,7 @@
-@extends("welcome2")
+@extends("admin_panel.welcome2")
 @section("content2")
 
 
-
+dada
 
   @endsection

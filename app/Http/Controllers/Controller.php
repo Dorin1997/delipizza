@@ -66,7 +66,7 @@ class Controller extends BaseController
         }
        
         
-        return view('menuarticles');
+        return view('admin_panel.menuarticles');
     }
     
     public function activcom (){
@@ -84,7 +84,7 @@ class Controller extends BaseController
         }
         
          $data = DB::table("tip_pizza")->get();
-    return view('activcom', ['data' => $data]);
+    return view('admin_panel.activcom', ['data' => $data]);
        
         
     }
@@ -103,7 +103,7 @@ class Controller extends BaseController
         }
         
          $data = DB::table("tip_pizza")->get();
-    return view('inactiv', ['data' => $data]);
+    return view('admin_panel.inactiv', ['data' => $data]);
        
         
     }
@@ -123,7 +123,7 @@ class Controller extends BaseController
         }
         
          $data = DB::table("users")->get();
-    return view('user', ['data' => $data]);
+    return view('admin_panel.user', ['data' => $data]);
        
         
     }
@@ -143,7 +143,7 @@ class Controller extends BaseController
         }
         
          $data = DB::table("tip_pizza")->get();
-    return view('pizza', ['data' => $data]);
+    return view('admin_panel.pizza', ['data' => $data]);
        
         
     }

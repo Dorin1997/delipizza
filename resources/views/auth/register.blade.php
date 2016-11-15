@@ -91,6 +91,9 @@
                                 </div>
                             </div>
               
+                        
+                 
+                        
                         <div class="form-group{{ $errors->has('adr') ? ' has-error' : '' }}">
                                 <label for="adr" class="col-md-4 control-label">Address</label>
 

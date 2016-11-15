@@ -54,6 +54,7 @@ class RegisterController extends Controller
          'number' => 'required|max:9',
         'adr' => 'required|max:255',
             'password' => 'required|min:6|confirmed',
+           
         ]);
     }
 
@@ -72,23 +73,26 @@ class RegisterController extends Controller
        
           {
            
-               return User::create([
+            return User::create([
           
                      'name' => $data['name'],
             'email' => $data['email'],
-           'number'=> $data['number'],
-           'adr'=> $data['adr'],
+            'number'=> $data['number'],
+            'adr'=> $data['adr'],
             'password' => bcrypt($data['password']),
-            
+            'admin'=> '0',
          ]);
-     }  else {
+            
+           }  
+      else 
+         {
            return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
            'number'=> $data['number'],
            'adr'=> $data['adr'],
             'password' => bcrypt($data['password']),
-                  'admin'=>'1',
+                'admin'=> '1',
          ]);
          
            

@@ -2,7 +2,16 @@
 @section("content2")
 
 
-  <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mod">New pizza</button>
+
+ <form action="upload" method="post" enctype="multipart/form-data">
+                       
+     <label for="">File: <input type="file" name="file_upload"></label>
+     <button type="button" onclick="$('#upload_modal_form').submit();" > Upload </button>
+                        
+                    </form>
+
+
+<button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mod">New pizza</button>
   
 
 <div class="head" style="margin-top:65px;">
@@ -50,8 +59,8 @@
             
                 <tr>
                 <td>Poza  </td>
-               <td>  <form method="POST" action="getdata.php" enctype="multipart/form-data">
-                    <input type="file" name="myimage">
+               <td>  
+
 
                    </form>
                        
@@ -69,7 +78,7 @@
             
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left create"  value="Upload Image" >   Adauga  </button>
+            <button class="btn btn-primary pull-left create"  name="submit" value="Upload Image" >   Adauga  </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -174,6 +183,9 @@
   
   
 <script> 
+    
+  
+    
    $("body").on("click",".add",function() {
         id=$(this).attr("id");
       

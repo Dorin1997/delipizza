@@ -46,3 +46,6 @@ Route::get('/delete', 'Controller@delpizz');
 
 Route::get('/updateu', 'Controller@upduser');
 Route::get('/upadm', 'Controller@modifdrept');
+
+
+ Route::post('add-catagory','Controller@uploadd');

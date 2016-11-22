@@ -2,15 +2,6 @@
 @section("content2")
 
 
-
- <form action="upload" method="post" enctype="multipart/form-data">
-                       
-     <label for="">File: <input type="file" name="file_upload"></label>
-     <button type="button" onclick="$('#upload_modal_form').submit();" > Upload </button>
-                        
-                    </form>
-
-
 <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mod">New pizza</button>
   
 
@@ -30,52 +21,45 @@
         </div>
          
         <div class="modal-body">
-            <form id="id">
-  
-    
-            <table class="tableedit">
-            <tr>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <td>Nume  </td>
-                <td><input id="nume" type="text" name="nume"  value="" </td>
-                
-            </tr>
-            
-            <tr>
-                <td>Descriere </td>
-                <td> <textarea id="descriere" cols="40" rows="5"   ></textarea> </td>
-               
-            </tr>
-            
-               <tr>
-                <td>Pret</td>
-                <td> <input type="number" id="price"  value=""></td>
-                
-            </tr>
-            
-                <tr>
-                <td>Poza  </td>
-               <td>  
-
-
-                   </form>
-                       
-                 
-               </td>
-                
-            </tr>
-            
-            
-        </table>
-            </form>
-           
-            
-            
-            
+                <form enctype="multipart/form-data" id="upload_form" role="form" method="POST" action="" >
+                    <div class="form-group">
+                        <label for="catagry_name">Nume</label>
+                         <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                        <input type="text" class="form-control" name="nume" id="catagry_name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Descriere">Descriere</label>
+                        <input type="text" class="form-control" name="descriere" id="Descriere" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Pret">Pret</label>
+                        <input type="Number" class="form-control" name="pret" id="Pret" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="catagry_name">Logo</label>
+                        <input type="file" name="logo" class="form-control" id="catagry_logo">
+                          <p class="invalid">Enter Catagory Logo.</p>
+                    </div>
+                    </form>
+                    <div class="modelFootr">
+                        <button type="button" class="addbtn">Add</button>
+                    </div>
+                <script>
+                    $(".addbtn").click(function(){
+                        $.ajax({
+                              url:'add-catagory',
+                              data:new FormData($("#upload_form")[0]),
+                              dataType:'json',
+                              async:false,
+                              type:'post',
+                              processData: false,
+                              contentType: false,
+                              success:function(response){
+                                location.reload();
+                              },
+                            });
+                         });
+                    </script>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary pull-left create"  name="submit" value="Upload Image" >   Adauga  </button>

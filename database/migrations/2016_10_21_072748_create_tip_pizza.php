@@ -18,7 +18,6 @@ class CreateTipPizza extends Migration
             $table->string('name');
            $table->text('ingrediente');
            $table->decimal('price');
-          $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
            $table->string('image')->nullable();
             });
     }

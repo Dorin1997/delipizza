@@ -21,7 +21,7 @@
         </div>
          
         <div class="modal-body">
-                <form enctype="multipart/form-data" id="upload_form" role="form" method="POST" action="" >
+                <form enctype="multipart/form-data" id="upload_form1" role="form" method="POST" action="" >
                     <div class="form-group">
                         <label for="catagry_name">Nume</label>
                          <input type="hidden" name="_token" value="{{ csrf_token()}}">
@@ -43,17 +43,19 @@
                     </form>
                     <div class="modelFootr">
                       
-                    </div>
+        </div>
                 
         </div>
         <div class="modal-footer">
               <button type="button" class="btn btn-primary pull-left addbtn">Add</button>
           
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button><script>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <script>
                     $(".addbtn").click(function(){
+                      
                         $.ajax({
                               url:'add-catagory',
-                              data:new FormData($("#upload_form")[0]),
+                              data:new FormData($("#upload_form1")[0]),
                               dataType:'json',
                               async:false,
                               type:'post',
@@ -95,6 +97,8 @@
         </div>
     
     <!-- end display pizza -->
+    
+    
            <div class="modal fade" id="mod{{$b->id}}" role="dialog">
           <div class="modal-dialog">
               
@@ -105,51 +109,40 @@
           <h4 class="modal-title">Modificare Pizza</h4>
         </div>
          
-        <div class="modal-body">
-            <form id="{{$b->id}}">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                <form enctype="multipart/form-data" id="update_form" role="form" method="POST" action="" >
+                    <div class="form-group">
+                         <label for="catagry_name">Nume</label>
+                         <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                         <input id="nume{{$b->id}}" type="text" class="form-control" name="nume"  value="{{$b->name}}" >
+                      
+                    </div>
+                    <div class="form-group">
+                        <label for="Descriere">Descriere</label>
+                        <input type="text" class="form-control" id="descriere{{$b->id}}" value="{{$b->ingrediente}}" placeholder="Descriere">
+                    </div>
+                    <div class="form-group">
+                        <label for="Pret">Pret</label>
+                         <input type="number" class="form-control" id="price{{$b->id}}" min='0' onkeypress='return event.charCode !== 45 ' value="{{$b->price}}"
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="catagry_name">Photo</label>
+                        <img alt="" class="img-polar " src="{{ asset($b->image) }}">
+                     <input type="file" name="logo" class="form-control" id="catagry_logo">
+                        
+                    </div>
+                    </form>
+                    <div class="modelFootr">
+                      
+                    </div>
+                
+        
+              
     
-            <table class="tableedit">
-            <tr>
-                <th> </th>
-                <th> </th>
-                <th> </th>
-            </tr>
-            <tr>
-                <td>Nume  </td>
-                <td><input id="nume{{$b->id}}" type="text" name="nume"  value="{{$b->name}}" </td>
-                
-            </tr>
-            
-            <tr>
-                
-                <td>Descriere </td>
-                <td> <textarea id="descriere{{$b->id}}" cols="40" rows="5">{{$b->ingrediente}}</textarea> </td>
-               
-            </tr>
-            
-               <tr>
-                <td>Pret</td>
-                <td> <input type="number" id="price{{$b->id}}" min='0' onkeypress='return event.charCode !== 45 ' value="{{$b->price}}" </td>
-                
-            </tr>
-            
-                <tr>
-                <td>Poza  </td>
-                <td>  <img alt="" class="img-polar " 
-                     src="{{ asset($b->image) }}">
-                    <input type="file" id="file" class="custom-file-input">
-                </td>
-                
-            </tr>
-            
-            
-        </table>
-            </form>
-           
-        </div>
+</div>
         <div class="modal-footer">
-            <button class="btn btn-primary pull-left add"  id="{{$b->id}}" >   Modifica  </button>
+            <button class="btn btn-primary pull-left updt"  id="abc{{$b->id}}" >   Modifica  </button>
              <button class="btn btn-primary pull-left del" id="{{$b->id}}"  >   Delete  </button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -158,12 +151,32 @@
     
 </div>  
     
-    
+          
+               
+                
+        
+              
     
 </div>
          @endforeach
 
+         <script>
+        $(".updt").click(function(){
          
+             $.ajax({
+                   url:'update-pizza',
+                   data:new FormData($("#update_form")[0]),
+                   dataType:'json',
+                   async:false,
+                   type:'post',
+                   processData: false,
+                   contentType: false,
+                   success:function(response){
+                     //location.reload();
+                   },
+                 });
+              });
+         </script>
          
      
 </div>
@@ -175,7 +188,7 @@
     
   
     
-   $("body").on("click",".add",function() {
+ /*  $("body").on("click",".add",function() {
         id=$(this).attr("id");
       
         $.ajax({  
@@ -194,7 +207,7 @@
             }
         });
    
-    });
+    });*/
     
       $("body").on("click",".del",function() {
         id=$(this).attr("id");
@@ -202,7 +215,8 @@
             type: 'GET',  
             url: "{{URL('/delete')}}", 
             data: 
-                { id:id
+                { 
+                    id:id
                 },
             success: function(data) {
               if (data==='true'){location.reload();}
@@ -210,9 +224,9 @@
         });
     });
     
-     $("body").on("click",".addbtn",function() {
+   /*  $("body").on("click",".addbtn",function() {
         id=$(this).attr("add");
-        if (($("#price").val()!== "")&& ($("#price").val() > '0') && ($("#nume").val()!== "") && ($("#descriere").val()!== "") )  {
+        if (($("#price").val()!== "") && ($("#price").val() > '0') && ($("#nume").val()!== "") && ($("#descriere").val()!== "") )  {
         
         $.ajax({  
             type: 'GET',  
@@ -230,7 +244,7 @@
             }
         });
     } else { alert('Datele introduse nu sunt complete'); };
-    });
+    });*/
     
     </script>
 

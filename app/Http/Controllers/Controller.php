@@ -151,16 +151,47 @@ class Controller extends BaseController
         
     }
     
-    public function updpizz(Request $a){
-      DB::table("tip_pizza")
-              ->where('id',"=",$a->id)
-              ->update(['name'=>$a->nume,
-                        'ingrediente'=>$a->descriere,
-                        'price'=>$a->price,
-                        'image'=>$a->poza]);
-      
-        return 'true';
-    }
+    public function updpizz( Request $request){
+          DB::table("tip_pizza") 
+                ->where('id',"=",$request->id)
+                ->update(['name'=>$request->nume,
+                            'ingrediente'=>$request->descriere,
+                            'price'=>$request->pret]
+                            );
+        $files=$request->file("logo");
+            $extensii=["jpeg","jpg","png","svg"];
+            if ($request->hasFile('logo')) {
+                if($request->file('logo')->isValid()){
+                    $ext=$files->getClientOriginalExtension();
+                    if(in_array($ext, $extensii)){
+                        if(filesize($files)<6000000){
+                            $name=str_random(100);;
+                            $path="img/products/items/";
+                            if($request->file('logo')->move($path,$name.".".$ext)){
+                                $filename=$path.$name.".".$ext;
+                              DB::table("tip_pizza") 
+                                    ->where('id',"=",$request->id)
+                                    ->update(['image'=>$filename]);
+                                
+                                return Response::json(array('succes'=>true,"image"=>asset($filename)));
+                            }else{
+                                return Response::json(array('succes'=>"Eror"));
+                            }
+                        }else{
+                            return Response::json(array('succes'=>"max6mb"));
+                        }
+                    }else{
+                        return Response::json(array('succes'=>"notjpg"));
+                    }
+                }else{
+                    return Response::json(array('succes'=>"notimage"));
+                }
+            }else{
+                return Response::json(array('succes'=>"notfound"));
+            }
+       
+        }
+    
     public function delpizz(Request $a){
       DB::table("tip_pizza")
               ->where('id',"=",$a->id)
@@ -192,32 +223,11 @@ class Controller extends BaseController
     }
     
     	 
-	public function addimage(Request $request)
-	{
-        $image = new Image();
-        $this->validate($request, [
-            'title' => 'required',
-            'image' => 'required'
-        ]);
-        $image->title = $request->title;
-        $image->description = $request->description;
-		if($request->hasFile('image')) {
-            $file = Input::file('image');
-            //getting timestamp
-            $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-            
-            $name = $timestamp. '-' .$file->getClientOriginalName();
-            
-            $image->filePath = $name;
-
-            $file->move(public_path().'/images/', $name);
-        }
-        $image->save();
-        return $this->create()->with('success', 'Image Uploaded Successfully');
-	}
+	
         
         
         public function uploadd(Request $request){
+         
             $files=$request->file("logo");
             $extensii=["jpeg","jpg","png","svg"];
             if ($request->hasFile('logo')) {

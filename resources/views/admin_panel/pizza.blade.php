@@ -110,7 +110,7 @@
         </div>
          
                 <div class="modal-body">
-                <form enctype="multipart/form-data" id="update_form" role="form" method="POST" action="" >
+                <form enctype="multipart/form-data" id="update_form{{$b->id}}" role="form" method="POST" action="" >
                     <div class="form-group">
                          <label for="catagry_name">Nume</label>
                          <input type="hidden" name="_token" value="{{ csrf_token()}}">
@@ -119,11 +119,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Descriere">Descriere</label>
-                        <input type="text" class="form-control" id="descriere{{$b->id}}" value="{{$b->ingrediente}}" placeholder="Descriere">
+                        <input type="text" class="form-control" id="descriere{{$b->id}}" name="descriere" value="{{$b->ingrediente}}" placeholder="Descriere">
                     </div>
                     <div class="form-group">
                         <label for="Pret">Pret</label>
-                         <input type="number" class="form-control" id="price{{$b->id}}" min='0' onkeypress='return event.charCode !== 45 ' value="{{$b->price}}"
+                         <input type="number" class="form-control" id="price{{$b->id}}" min='0' name="price" onkeypress='return event.charCode !== 45 ' value="{{$b->price}}"
                       </div>
                     </div>
                     <div class="form-group">
@@ -162,17 +162,19 @@
 
          <script>
         $(".updt").click(function(){
-         
+           var id=$(this).attr("id").replace("abc","");
+           var z=new FormData($("#update_form"+id)[0]);
+           z.append('id',id);
              $.ajax({
                    url:'update-pizza',
-                   data:new FormData($("#update_form")[0]),
+                   data:z,
                    dataType:'json',
                    async:false,
                    type:'post',
                    processData: false,
                    contentType: false,
                    success:function(response){
-                     //location.reload();
+                     location.reload();
                    },
                  });
               });

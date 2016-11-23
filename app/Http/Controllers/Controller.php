@@ -156,11 +156,12 @@ class Controller extends BaseController
                 ->where('id',"=",$request->id)
                 ->update(['name'=>$request->nume,
                             'ingrediente'=>$request->descriere,
-                            'price'=>$request->pret]
+                            'price'=>$request->price]
                             );
         $files=$request->file("logo");
             $extensii=["jpeg","jpg","png","svg"];
             if ($request->hasFile('logo')) {
+                
                 if($request->file('logo')->isValid()){
                     $ext=$files->getClientOriginalExtension();
                     if(in_array($ext, $extensii)){
@@ -169,6 +170,10 @@ class Controller extends BaseController
                             $path="img/products/items/";
                             if($request->file('logo')->move($path,$name.".".$ext)){
                                 $filename=$path.$name.".".$ext;
+                                $old=DB::table("tip_pizza") 
+                                    ->where('id',"=",$request->id)
+                                        ->value('image');
+                                         File::delete($old);
                               DB::table("tip_pizza") 
                                     ->where('id',"=",$request->id)
                                     ->update(['image'=>$filename]);
@@ -193,9 +198,15 @@ class Controller extends BaseController
         }
     
     public function delpizz(Request $a){
+        
+        $old=DB::table("tip_pizza") 
+                                    ->where('id',"=",$a->id)
+                                        ->value('image');
+                                         File::delete($old);
       DB::table("tip_pizza")
               ->where('id',"=",$a->id)
               ->delete();
+       
       
         return 'true';
     }

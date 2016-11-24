@@ -117,11 +117,12 @@ class Controller extends BaseController
                  }
                  
                  $elem=DB::table('tip_adaos')
-                         ->select('tip_adaos.numetip','adding.id','adding.produs','adding.pret')
+                         ->select('tip_adaos.id','tip_adaos.numetip','adding.id','adding.produs','adding.pret')
                          ->leftJoin('adding',function($join){
                              $join->on('tip_adaos.id', '=', 'adding.idtip');
                          }) ->get();
-                         $result=[];
+                         
+                 $result=[];
                  foreach($elem as $key=>$value)
                  {
                   $result[$value->numetip][$key]=$value; 

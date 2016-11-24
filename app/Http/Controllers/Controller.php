@@ -52,7 +52,7 @@ class Controller extends BaseController
   
     
     
-    //--------  admin
+    //--------  admin ----------------------------------------------------------------------------------
     
     public function articles()
         {
@@ -102,25 +102,11 @@ class Controller extends BaseController
         
     }
     
-    public function utilizatori (){
-        if (\Auth::guest()) {
-            return redirect('/login');
-           
-        } 
-        else {
-           
-            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
-                    ->value('admin'); 
-            if ($us!=1)  { return redirect('/'); } 
-           
-           
-        }
-         $data = DB::table("users")->get();
-    return view('admin_panel.user', ['data' => $data]);
-       
-        
-    }
+  
     
+    
+    
+    // lucru cu topinguri (suplimente )----------------------------------------------------------------------------------
     public function supl ()
             {
             if (\Auth::guest()) {return redirect('/login'); } 
@@ -131,7 +117,7 @@ class Controller extends BaseController
                  }
                  
                  $elem=DB::table('tip_adaos')
-                         ->select('tip_adaos.numetip','adding.produs','adding.pret')
+                         ->select('tip_adaos.numetip','adding.id','adding.produs','adding.pret')
                          ->leftJoin('adding',function($join){
                              $join->on('tip_adaos.id', '=', 'adding.idtip');
                          }) ->get();
@@ -146,7 +132,19 @@ class Controller extends BaseController
             }
             
             
-   
+            public function supldel(Request $a){
+        
+       
+      DB::table("adding")
+              ->where('id',"=",$a->id)
+              ->delete();
+       
+      
+        return 'true';
+    }
+            
+            
+    //lucru cu pizza ----------------------------------------------------------------------------------
     public function pizza (){
         if (\Auth::guest()) {
             return redirect('/login');
@@ -228,31 +226,6 @@ class Controller extends BaseController
         return 'true';
     }
     
-    
-    
-    
-    public function upduser(Request $a){
-      DB::table("users")
-              ->where('id',"=",$a->id)
-              ->update(['name'=>$a->nume,
-                        'email'=>$a->email,
-                         'password'=>bcrypt($a->password),
-                        'number'=>$a->number,
-                        'adr'=>$a->adre]);
-      
-        return 'true';
-    }
-    
-    public function modifdrept(Request $a){
-        DB::table("users")
-                ->where('id',"=",$a->id)
-                ->update(['admin'=>$a->adm]);
-        return 'true';
-    }
-    
-    	 
-	
-        
         
         public function uploadd(Request $request){
          
@@ -291,4 +264,51 @@ class Controller extends BaseController
                 return Response::json(array('succes'=>"notfound"));
             }
         }
-}
+
+    //lucru cu user----------------------------------------------------------------------------------
+      public function utilizatori (){
+        if (\Auth::guest()) {
+            return redirect('/login');
+           
+        } 
+        else {
+           
+            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                    ->value('admin'); 
+            if ($us!=1)  { return redirect('/'); } 
+           
+           
+        }
+         $data = DB::table("users")->get();
+    return view('admin_panel.user', ['data' => $data]);
+       
+        
+    }
+    
+    public function upduser(Request $a){
+      DB::table("users")
+              ->where('id',"=",$a->id)
+              ->update(['name'=>$a->nume,
+                        'email'=>$a->email,
+                         'password'=>bcrypt($a->password),
+                        'number'=>$a->number,
+                        'adr'=>$a->adre]);
+      
+        return 'true';
+    }
+    
+    public function modifdrept(Request $a){
+        DB::table("users")
+                ->where('id',"=",$a->id)
+                ->update(['admin'=>$a->adm]);
+        return 'true';
+    }
+    
+    
+    
+    
+    
+    
+	}
+        
+    

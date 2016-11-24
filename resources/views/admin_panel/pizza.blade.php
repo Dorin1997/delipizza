@@ -93,8 +93,8 @@
         </div>
         </div>
     
-    <!-- end display pizza -->
-    
+   
+    <!----- -->
     
         <div class="modal fade" id="mod{{$b->id}}" role="dialog">
         <div class="modal-dialog">
@@ -160,6 +160,8 @@
                    },
                  });
               });
+              
+              
         $("body").on("click",".del",function() {
             id=$(this).attr("id");
             $.ajax({  

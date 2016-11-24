@@ -39,6 +39,7 @@ Route::get('/ac', 'Controller@activcom');
 Route::get('/ic', 'Controller@inactivcom');
 Route::get('/user', 'Controller@utilizatori');
 Route::get('/pz', 'Controller@pizza');
+Route::get('/supl', 'Controller@supl');
 
 
 
@@ -50,3 +51,5 @@ Route::get('/upadm', 'Controller@modifdrept');
 
  Route::post('add-catagory','Controller@uploadd');
  Route::post('update-pizza','Controller@updpizz');
+ 
+ 

@@ -54,43 +54,34 @@ class Controller extends BaseController
     
     //--------  admin
     
-    public function articles(){
-        if (\Auth::guest()) {
-            return redirect('/login');
-           
-        } 
-        else {
-           
-            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
-                    ->value('admin'); 
-            if ($us!=1)  { return redirect('/'); } 
-           
-           
+    public function articles()
+        {
+            if (\Auth::guest()) 
+                 { 
+                    return redirect('/login');
+                 } 
+            else 
+                 {
+                    $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                            ->value('admin'); 
+                    if ($us!=1)  { return redirect('/'); }  
+                 }
+            return view('admin_panel.menuarticles');
         }
-       
-        
-        return view('admin_panel.menuarticles');
-    }
     
-    public function activcom (){
-        if (\Auth::guest()) {
-            return redirect('/login');
-           
-        } 
-        else {
-           
-            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
-                    ->value('admin'); 
-            if ($us!=1)  { return redirect('/'); } 
-           
-           
-        }
-        
-         $data = DB::table("tip_pizza")->get();
-    return view('admin_panel.activcom', ['data' => $data]);
-       
-        
-    }
+    public function activcom ()
+            {
+            if (\Auth::guest()) {return redirect('/login'); } 
+            else {
+                $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                        ->value('admin'); 
+                if ($us!=1)  { return redirect('/'); } 
+                 }
+
+                 $data = DB::table("tip_pizza")->get();
+                 return view('admin_panel.activcom', ['data' => $data]);
+            }
+            
      public function inactivcom (){
         if (\Auth::guest()) {
             return redirect('/login');
@@ -124,12 +115,37 @@ class Controller extends BaseController
            
            
         }
-        
          $data = DB::table("users")->get();
     return view('admin_panel.user', ['data' => $data]);
        
         
     }
+    
+    public function supl ()
+            {
+            if (\Auth::guest()) {return redirect('/login'); } 
+            else {
+                $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                        ->value('admin'); 
+                if ($us!=1)  { return redirect('/'); } 
+                 }
+                 
+                 $elem=DB::table('tip_adaos')
+                         ->select('tip_adaos.numetip','adding.produs','adding.pret')
+                         ->leftJoin('adding',function($join){
+                             $join->on('tip_adaos.id', '=', 'adding.idtip');
+                         }) ->get();
+                         $result=[];
+                 foreach($elem as $key=>$value)
+                 {
+                  $result[$value->numetip][$key]=$value; 
+                  
+                 }
+               
+                 return view('admin_panel.suplimente', ["result"=>$result]); 
+            }
+            
+            
    
     public function pizza (){
         if (\Auth::guest()) {
@@ -150,6 +166,7 @@ class Controller extends BaseController
        
         
     }
+    
     
     public function updpizz( Request $request){
           DB::table("tip_pizza") 

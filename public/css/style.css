@@ -397,3 +397,21 @@ td, th {
     
 }
 
+.showtoping{
+   background-color:azure;
+   
+}
+
+.showtoping1{
+   background-color:green;   
+}
+
+.nodisp{
+     display: none;
+}
+
+
+.disp:hover .nodisp {
+    display: block;
+   
+}

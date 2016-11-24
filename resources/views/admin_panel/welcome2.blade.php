@@ -33,6 +33,7 @@
        <li><a href="{{URL("/ic")}}">Comenzi finisate</a></li>
        <li><a href="{{URL("/user")}}">Utilizatori</a></li>
         <li><a href="{{URL("/pz")}}">Pizza</a></li>
+         <li><a href="{{URL("/supl")}}">Suplimente</a></li>
       </ul>   
     </div>
   </div>

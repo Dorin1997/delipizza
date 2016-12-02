@@ -112,6 +112,7 @@
                          <label for="catagry_name">Nume</label>
                          <input type="hidden" name="_token" value="{{ csrf_token()}}">
                          <input id="nume{{$b->id}}" type="text" class="form-control" name="nume"  value="{{$b->name}}" >
+                         
                     </div>
                 
                     <div class="form-group">

@@ -168,6 +168,7 @@ class Controller extends BaseController
     
     
     public function updpizz( Request $request){
+     
           DB::table("tip_pizza") 
                 ->where('id',"=",$request->id)
                 ->update(['name'=>$request->nume,
@@ -212,7 +213,28 @@ class Controller extends BaseController
             }
        
         }
+          ///// toping
+     public function updtop( Request $request){
+             
+  
+      DB::table('tip_adaos')
+               ->where('numetip',"=",$request->old)
+               ->update (['numetip'=>$request->numetop]);
+      
+      $el = DB::table('tip_adaos')
+                ->where('numetip',"=",$request->old)
+                ->select('id')
+                ->get(); 
+      
     
+       DB::table('adding')
+               ->where('idtip',"=",$el)
+               ->update(['produs'=>$request->numeadaos,
+                         'pret'=>$request->pretadaos]);
+      
+      //return 'true';
+        }   
+  
     public function delpizz(Request $a){
         
         $old=DB::table("tip_pizza") 

@@ -224,13 +224,16 @@ class Controller extends BaseController
       $el = DB::table('tip_adaos')
                 ->where('numetip',"=",$request->old)
                 ->select('id')
-                ->get(); 
+                ->get();
+                
       
+     dd($el);
     
        DB::table('adding')
                ->where('idtip',"=",$el)
                ->update(['produs'=>$request->numeadaos,
-                         'pret'=>$request->pretadaos]);
+                         'pret'=>$request->valadaos]);
+     
       
       //return 'true';
         }   

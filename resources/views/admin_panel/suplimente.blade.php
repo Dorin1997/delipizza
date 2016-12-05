@@ -17,7 +17,7 @@
              
             </div>
                      
-                            <!-- modificare -->
+                           
                         <div class="modal fade" id="mod{{$key}}" role="dialog">
                         <div class="modal-dialog">
 
@@ -56,7 +56,7 @@
                         </div>     
                         </div>
                     
-                    <!-- sfirsit de modificare -->
+                  
                      @foreach($value as $a )
             <br>
             <div class="disp"> 

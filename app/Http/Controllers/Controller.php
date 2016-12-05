@@ -227,7 +227,7 @@ class Controller extends BaseController
                 ->get();
                 
       
-     dd($el);
+     dd($request->numeadaos);
     
        DB::table('adding')
                ->where('idtip',"=",$el)

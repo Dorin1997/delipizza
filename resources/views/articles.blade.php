@@ -60,7 +60,17 @@
     
 <div class="media-body text-art">
      
-    <h4 style="margin-left:10px;">{{$b->name}}   <small></small></h4 ><p style="margin-left:10px;"> {{$b->ingrediente}}</p>
+    <h4 style="margin-left:10px;">{{$b->name}}   <small></small></h4 ><p style="margin-left:10px;"> 
+      
+        <?php 
+          $text=$b->ingrediente;
+          if (strlen($text)<180) { echo $text; } 
+          else { $txtmod=substr($text,0,180);  echo $txtmod." ... ";}
+        
+        ?>
+        
+      </p>
+   
     <!--<span class="item_price"> </span> --> 
     <h4  style="margin-left:10px;"> Price : {{$b->price}} </h4>
     <br><br> <br> <span class="show-menu">
@@ -76,7 +86,7 @@
    
      
 </div>
-  <div  style="position: relative" class="jos stinga10px footer-distributed article">
+  <div  style="position: relative;width:100%;margin-left: 0%" class="jos stinga10px footer-distributed ">
 		Copyright © 2016 Delicious Pizza
 		</div>
  

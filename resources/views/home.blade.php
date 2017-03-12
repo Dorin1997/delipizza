@@ -40,7 +40,7 @@
             </div>
         </div>
     </nav>
-    <div class="col-md-5 ">
+    <div >
         
         
         
@@ -89,14 +89,7 @@
                
             </tr>
             
-            <tr>
-                <td>New Password</td>
-                <td> <input type="password" name="nume" required id="password" value="">
-                            
-                
-                </td>
-                
-            </tr>
+          
             
             
             
@@ -166,8 +159,8 @@
    
     });
     </script>
-    <div style="height: 615px;"> </div>
-
+    <div > </div>
+    </div>
 
 
     

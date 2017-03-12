@@ -76,12 +76,13 @@
    
      
 </div>
-  
- 
-<div class="jos stinga10px ">
+  <div  style="position: relative" class="jos stinga10px footer-distributed article">
 		Copyright © 2016 Delicious Pizza
 		</div>
+ 
+
      </div>
+      
 
 </body>
 </html>

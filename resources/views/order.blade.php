@@ -50,12 +50,12 @@
      <div>
         <table class="table table-condesed table-striped table-bordered color">
             <thead>
-                <tr> <th> Product </th>
+                <tr> <th> {{$produs->name}} </th>
                     <th> Cantitate </th>
                     <th> Price </th> </tr>
             </thead>
             <tbody> 
-                <tr> <th> <span class="name" >({{$produs->name}})</span> Ingrediente :{{$produs->ingrediente}} </th>
+                <tr> <th> Ingrediente :{{$produs->ingrediente}} </th>
                             <th> 
                                 <form class="formnr">
                                    <input type="number" size="3" min='1' value="1" >
@@ -81,9 +81,9 @@
       <div class="col-md-6"  >
           <h3 style="margin-left:100px;"> Select size </h3>
          <form>
-             <input style="margin-left:90px;" type="radio" name="size" value="Medium" checked>Medium(8 felii)$9.95<br>
-  <input style="margin-left:90px;" type="radio" name="size" value="XLarge">Large(12 felii)$13.95 <br>
-    <input  style="margin-left:90px;" type="radio" name="size" value="Party">Party(24 felii)$16.95 
+             <input style="margin-left:90px;" type="radio" name="size" value="Medium" checked>Medium(8 felii)<br>
+  <input style="margin-left:90px;" type="radio" name="size" value="XLarge">Large(12 felii) <br>
+    <input  style="margin-left:90px;" type="radio" name="size" value="Party">Party(24 felii) 
          </form> 
       </div>
       
@@ -113,8 +113,8 @@
          @if ($t->id == $e->idtip)
          <label style="font-weight: normal;">   <input id="{{$e->id}}" class='imp' type="checkbox"  value=""  >     {{$e->produs}}  </label>
             <span id="sup{{$e->id}}" style='display: none;'> 
-                <small style="color:gray">{{$e->pret}}</small>
-                <Select class='span2 small topping_preference' id='{{$e->id}}' style="width:90px;"> 
+                <small >{{$e->pret}}</small>
+                <Select style="color:black" class='span2 small topping_preference' id='{{$e->id}}' style="width:90px;"> 
                  <option> Normal</option>  
                  <option> Putin </option>  
                  <option> Mult </option> 
@@ -123,7 +123,7 @@
             </span>
          <Br>  
          <span  id="supp{{$e->id}}" style='display: none;'> 
-             <Select class='span2 small topping_preference' style="width:90px;" > 
+             <Select style="color:black" class='span2 small topping_preference' style="width:90px;" > 
               <option> Toata pizza</option>  
               <option> Partea dreapta </option>   
               <option> Partea Stinga </option> 

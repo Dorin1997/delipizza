@@ -17,7 +17,7 @@ Route::get('/panel',"Controller@articles");
 Route::get('/info',"Controller@info");
 Route::get('/login',"Controller@logare");
 Route::get('/order-{id}',"Controller@oneprodus");
-
+Route::get('/shopcart',"Controller@shopcart");
 
 Auth::routes();
 
@@ -54,5 +54,7 @@ Route::get('/upadm', 'Controller@modifdrept');
  Route::post('update-pizza','Controller@updpizz');
  
  Route::post('update-toping' , 'Controller@updtop');
+ 
+ 
  
  

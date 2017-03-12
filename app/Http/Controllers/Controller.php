@@ -49,6 +49,10 @@ class Controller extends BaseController
         return view("order",["produs"=>$produs,"elem"=>$elem,"tipe"=>$tipe]);
         
     }
+    
+    public function shopcart(){
+        return view("shopcart");
+    }
   
     
     

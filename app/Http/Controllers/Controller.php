@@ -24,7 +24,7 @@ class Controller extends BaseController
   
     public function arton(){
         $data = DB::table("tip_pizza")->get();
-    return view('articles', ['data' => $data]);
+    return view('produse.articles', ['data' => $data]);
     }
     
     
@@ -46,12 +46,12 @@ class Controller extends BaseController
         $elem = DB::table("adding")->get();
         $tipe=DB::table("tip_adaos")->get(); 
         
-        return view("order",["produs"=>$produs,"elem"=>$elem,"tipe"=>$tipe]);
+        return view("produse.order",["produs"=>$produs,"elem"=>$elem,"tipe"=>$tipe]);
         
     }
     
     public function shopcart(){
-        return view("shopcart");
+        return view("produse.shopcart");
     }
   
     

@@ -13,14 +13,15 @@ class CreateCommandPizzaTable extends Migration
      */
     public function up()
     {
-       Schema::create('command_pizza', function (Blueprint $table) {
+       Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->float('total_price');
             $table->string('name');
-           $table->text('componente');
-           $table->integer('id_user');
-           $table->decimal('price');
-          $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
-          
+            $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
+            $table->timestamps();
+            
             });
     }
 

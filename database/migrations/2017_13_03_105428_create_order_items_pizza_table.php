@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommandPizzaTable extends Migration
+class CreateOrderItemsPizzaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCommandPizzaTable extends Migration
      */
     public function up()
     {
-       Schema::create('orders', function (Blueprint $table) {
+       Schema::create('order_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->float('total_price');
+            $table->integer('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->integer('prod_id')->references('id')->on('tip_pizza');
+            $table->integer('quantity');
            
-            $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
-            $table->timestamps();
             
             });
     }

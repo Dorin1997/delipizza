@@ -16,7 +16,7 @@
     
 <div class="media-body text-art">
      
-    <h4 style="margin-left:10px;">{{$b->name}}   <small></small></h4 ><p style="margin-left:10px;"> 
+    <h4 class="produs-text" style="margin-left:10px;">{{$b->name}}   <small></small></h4 ><p style="margin-left:10px;"> 
       
         <?php 
           $text=$b->ingrediente;

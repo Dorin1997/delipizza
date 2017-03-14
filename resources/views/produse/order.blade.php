@@ -46,7 +46,10 @@
  @if (!empty($produs))
  <div style="margin-top:65px;">
      
-     
+     <?php 
+     $row=$produs->id;
+   
+     ?>
      <div>
         <table class="table table-condesed table-striped table-bordered color">
             <thead>
@@ -151,7 +154,8 @@
         });
     </script>
     <Br>
-    <input style="margin-left: 50px;" type="submit"   value="Add/Update" >
+       <a class="btn btn-success" href="cartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>">Add to cart</a>
+   
     <a style="color:black" href="{{URL("/articleon")}}"> <button type="button"> Cancel</button>  </a>
      <hr class="hrstyle2">
       </div>

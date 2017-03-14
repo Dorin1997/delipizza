@@ -47,9 +47,8 @@
     </div>
   </div>
 </nav>
-
-     
-    
+         <!--Cart c;ass cart.php   -->
+ 
     @yield("content3")
     
   <div  style="position: relative;width:100%;margin-left: 0%" class="jos stinga10px footer-distributed ">

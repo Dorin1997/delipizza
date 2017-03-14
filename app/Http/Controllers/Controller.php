@@ -44,9 +44,9 @@ class Controller extends BaseController
                 ->where("id",$id)
                 ->first();
         $elem = DB::table("adding")->get();
-        $tipe=DB::table("tip_adaos")->get(); 
+       
         
-        return view("produse.order",["produs"=>$produs,"elem"=>$elem,"tipe"=>$tipe]);
+        return view("produse.order",["produs"=>$produs,"elem"=>$elem]);
         
     }
     
@@ -120,20 +120,11 @@ class Controller extends BaseController
                 if ($us!=1)  { return redirect('/'); } 
                  }
                  
-                 $elem=DB::table('tip_adaos')
-                         ->select('tip_adaos.id','tip_adaos.numetip','adding.id','adding.produs','adding.pret')
-                         ->leftJoin('adding',function($join){
-                             $join->on('tip_adaos.id', '=', 'adding.idtip');
-                         }) ->get();
-                         
-                 $result=[];
-                 foreach($elem as $key=>$value)
-                 {
-                  $result[$value->numetip][$key]=$value; 
-                  
-                 }
                
-                 return view('admin_panel.suplimente', ["result"=>$result]); 
+                   $elem = DB::table("adding")->get();
+   
+               
+                 return view('admin_panel.suplimente', ["elem"=>$elem]); 
             }
             
             
@@ -218,28 +209,21 @@ class Controller extends BaseController
        
         }
           ///// toping
-     public function updtop( Request $request){
+     public function updtop( Request $a){
              
   
-      DB::table('tip_adaos')
-               ->where('numetip',"=",$request->old)
-               ->update (['numetip'=>$request->numetop]);
+   
       
-      $el = DB::table('tip_adaos')
-                ->where('numetip',"=",$request->old)
-                ->select('id')
-                ->get();
-                
-      
-     dd($request->numeadaos);
+   
     
        DB::table('adding')
-               ->where('idtip',"=",$el)
-               ->update(['produs'=>$request->numeadaos,
-                         'pret'=>$request->valadaos]);
+               ->where('id',"=",$a->id)
+               ->update(['produs'=>$a->produs,
+                         'pret'=>$a->pret]);
      
+        
       
-      //return 'true';
+      return 'true';
         }   
   
     public function delpizz(Request $a){
@@ -255,6 +239,22 @@ class Controller extends BaseController
       
         return 'true';
     }
+     public function newtop(request $a){
+             
+  
+      
+      
+   
+    
+       DB::table('adding')
+               
+               ->insert(['produs'=>$a->produs,
+                         'pret'=>$a->pret]);
+     
+        
+      
+      return 'true';
+        }  
     
         
         public function uploadd(Request $request){

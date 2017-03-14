@@ -53,8 +53,8 @@ Route::get('/upadm', 'Controller@modifdrept');
  Route::post('add-catagory','Controller@uploadd');
  Route::post('update-pizza','Controller@updpizz');
  
- Route::post('update-toping' , 'Controller@updtop');
- 
+ Route::get('/update-toping' , 'Controller@updtop');
+  Route::get('/new-toping' , 'Controller@newtop');
  
  
  

@@ -15,7 +15,6 @@ class CreateAddingTable extends Migration
     {
         Schema::create('adding', function (Blueprint $table){
             $table->increments("id");
-            $table->string("idtip");
             $table->string("produs");
             $table->decimal("pret");
         });

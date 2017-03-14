@@ -1,24 +1,68 @@
 @extends("admin_panel.welcome2")
 @section("content2")
+ <!-- Add a unui toping -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mod" >
+    <span class="glyphicon">New Topping </span>  </button>
+                             <hr>
+<div class="modal fade" id="mod" role="dialog">
+                        <div class="modal-dialog">
+
+
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">New topping</h4>
+                        </div>
+
+                            <div class="modal-body">
+                                <form enctype="multipart/form-data" id="" role="form" method="get" action="" >
+                                        <div class="form-group">
+                                           
+                                              
+                                            <label >Name</label>  <input type="text" class="form-control" id="a" name="numetop" value="" >
+                                            <label style="margin-top: 5px">Price</label> <input type="number" min="0"  class="form-control" id="b" name="prettop" value="" >
+                                   
+                                        </div>
+                                                 
+                                            
+                                              
+
+                                </form>
+                            </div>
+                                <div class="modal-footer">
+                                     <button class="btn btn-primary pull-left newadd"  id="abc" >   Modifica  </button>
+
+                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            
+                        </div>
+                        </div>     
+                        </div>
 
 
 
-    @foreach($result as $key=>$value )
-  
-        <Div clas="row">
-            <div class="showtoping"> 
-                   
-                    <div class="disp" > 
+ <!-- afisare si modificare -->
+         <Div style="color:white;font-size: 24px;">
+        @foreach($elem as $a )
+      <div class="disp"> 
                 <div class="nodisp">  
-                      <button type="button" class="glyphicon glyphicon-pencil mod" data-toggle="modal" data-target="#mod{{$key}}"> Modifica</button>
+
+                         <button type="button" class="btn glyphicon glyphicon-pencil mod" data-toggle="modal" data-target="#mod{{$a->id}}" >
+                             <span class="glyphicon">Modifica </span>  </button>
+                          <button type="button" class="btn btn-default btn-sm del" id="{{$a->id}}" >
+                         <span class="glyphicon glyphicon-remove">Remove </span>  </button>  
+                    
                 </div>  
-                      
-                 <b>{{$key}}: </b> 
-             
-            </div>
-                     
-                           
-                        <div class="modal fade" id="mod{{$key}}" role="dialog">
+          
+          <p> {{$a->produs}} | {{$a->pret}} </p>
+      </div>         
+           @endforeach
+</div>
+              
+               
+     @foreach($elem as $a )
+                    
+                        <div class="modal fade" id="mod{{$a->id}}" role="dialog">
                         <div class="modal-dialog">
 
 
@@ -29,25 +73,22 @@
                         </div>
 
                             <div class="modal-body">
-                                <form enctype="multipart/form-data" id="update_form{{$key}}" role="form" method="post" action="" >
+                                <form enctype="multipart/form-data" id="update_form{{$a->id}}" role="form" method="post" action="" >
                                         <div class="form-group">
-                                              <label for="Categorie">Categoria</label>
-                                              <meta name="_token" content="{{ csrf_token() }}">
-                                            <input type="text" class="form-control" id="a{{$key}}" name="numetop" value="{{$key}}" >
-                                            <input  style="display: none"  type="text"  class="form-control" id="a{{$key}}"   name="old"  value="{{$key}}">
+                                            <label for="Categorie">Modificare</label>
+                                              
+                                            <input type="text" class="form-control" id="a{{$a->id}}" name="numetop" value="{{$a->produs}}" >
+                                            <input type="number" min="0" style="margin-top: 5px" class="form-control" id="b{{$a->id}}" name="prettop" value="{{$a->pret}}" >
+                                   
                                         </div>
-                                                 <label for="Categorie">Elemente</label>
-                                              @foreach($value as $a )
-                                        <div class="form-group" >
-                                            <input style="width:49%;display: inline;float:left;" type="text" class="form-control" id="a{{$a->id}}" name="numeadaos" value=" {{$a->produs}}" >
-                                            <input style="width:49%"type="text" class="form-control" id="a{{$a->id}}" name="valadaos" value=" {{$a->pret}}" >
-                                        </div>
-                                              @endforeach
+                                                 
+                                            
+                                              
 
                                 </form>
                             </div>
                                 <div class="modal-footer">
-                                     <button class="btn btn-primary pull-left addbtn"  id="abc{{$key}}" >   Modifica  </button>
+                                     <button class="btn btn-primary pull-left addbtn"  id="abc{{$a->id}}" >   Modifica  </button>
 
                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
@@ -55,61 +96,55 @@
                         </div>
                         </div>     
                         </div>
-                    
-                  
-                     @foreach($value as $a )
-            <br>
-            <div class="disp"> 
-                <div class="nodisp">  
-                     <button type="button" class="btn btn-default btn-sm del" id="{{$a->id}}" style="height: 24px;">
-                             <span class="glyphicon glyphicon-remove">Remove </span> 
-                     </button>  
-                </div>  
-                
-             {{$a->produs}}  ({{$a->pret}}) 
-            </div>
-            
-          
-            
-       
-         @endforeach
-        
-            </div><br>
-            
-    @endforeach
-
-        </div>
-    
+  @endforeach
+         
    
-    
-    
-    
    <script>
-        
+            $(".newadd").click(function(){      
+         
+      if (($("#a").val()) || ($("#b").val()))
+      { alert("Introduceti date in formular")}
+      else {
+      
+        $.ajax({  
+            type: 'GET',  
+            url: "{{URL('/new-toping')}}", 
+            data: 
+                { 
+                  produs:$("#a").val(),
+                  pret:$("#b").val(),
+                
+            
+                },
+            success: function(data) {
+              if (data==='true'){location.reload();}
+            }
+             }
+        });
+   
+  
+   
+    }); 
            $(".addbtn").click(function(){      
-           var id=$(this).attr("id").replace("abc","");
-           var z=new FormData($("#update_form"+id)[0]);
-          
-       
-           
-                    $.ajaxSetup({
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
-                });
-           
-             $.ajax({
-                   url:'update-toping',
-                   data:z,
-                   dataType:'json',
-                   async:false,
-                   type:'post',
-                   processData: false,
-                   contentType: false,
-                   success:function(response){
-                      
-                     location.reload();
-                   },
-                 });
-              });
+           var id=$(this).attr("id").replace("abc","");  
+      
+      
+        $.ajax({  
+            type: 'GET',  
+            url: "{{URL('/update-toping')}}", 
+            data: 
+                { id:id,
+                  produs:$("#a"+id).val(),
+                  pret:$("#b"+id).val(),
+                
+            
+                },
+            success: function(data) {
+              if (data==='true'){location.reload();}
+            }
+        });
+   
+    });
               
   
         
@@ -130,5 +165,5 @@
     });      
          </script>  
 
-
+   
   @endsection

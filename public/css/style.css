@@ -1,3 +1,11 @@
+html{
+     -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+}
 body{
   	
         margin:0px;
@@ -6,6 +14,7 @@ body{
         cursor : default;
          padding: 25px !important;
         margin: 0 0 100px !important;
+        
 }
 
 #toata {
@@ -447,5 +456,10 @@ td, th {
 
 .disp:hover .nodisp {
     display: block;
+   
+}
+.butnjos{
+    display:block;
+    margin-left: 40px;
    
 }

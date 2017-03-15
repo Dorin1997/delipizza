@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use Session;
+use Auth;
+
 class ProductController extends Controller
 {
      public function getIndex()
@@ -14,32 +16,54 @@ class ProductController extends Controller
          $product = DB::table("tip_pizza")->get();
     return view('produse.articles', ['product' => $product]);
     }
-    public function getAddtoCart(Request $request,$id)
-
-    {
-         $produs=DB::table("tip_pizza")
-                ->where("id",$id)
-                ->first();
-     
-       
-        $oldCart=Session::has('cart') ? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->add($produs, $produs->id);
-        
-        $request->session()->put('cart',$cart);
-       dd($request->session()->get('cart'));
-       //return redirect('/articleon');
+    public function addcart(Request $request){
+        $id=$request->id;
+        $qty=$request->cantitate;
+        $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("cantitate");
+        if(!empty($exist) && count($exist) >0){
+            DB::Table("orders")->where("user_id",Auth::id())
+                    ->where("product_id",$id)
+                    ->update(['cantitate'=>($exist+$qty)]);
+        }else{
+            DB::Table("orders")->insert([
+                "user_id"=>Auth::id(),
+                "product_id"=>$id,
+                "cantitate"=>$qty
+            ]);
+        }
     }
+   
+   public function delcart(Request $request )
+    {   
+        $id=$request->id;
+       
+            DB::table("orders")
+                    ->where("user_id",Auth::id())
+                    ->where("product_id",$id)
+                    ->delete();
+        return 'true';
+            
+    }
+    
     
     public function getCart()
     {
-        if (!Session::has('cart'))
-        {
-            return view('produse.shopcart', ['product' => null]);
+        $cart=[];
+        if (Auth::guest()) {
+            return redirect('/login');
+        } 
+        else {
+         
+           $cart=DB::Table("tip_pizza")  
+                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->leftJoin("orders",function($join){
+                                $join->on('tip_pizza.id', '=', 'orders.product_id');
+                               
+                            })
+                   ->where("user_id",Auth::id())
+                   ->get();
         }
-       $oldCart=Session::get('cart');
-       $cart = new Cart($oldCart);
-       return view('produse.shopcart', ['product' => $cart->items , 'totalPrice' =>$cart->totalPrice]);
+       return view('produse.shopcart', ['cart' => $cart]);
     }
     
   }  

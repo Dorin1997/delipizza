@@ -16,9 +16,9 @@ class CreateCommandPizzaTable extends Migration
        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('product_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->float('total_price');
-           
+            $table->integer('cantitate')->default(1);
             $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
             $table->timestamps();
             

@@ -95,8 +95,8 @@ class Controller extends BaseController
             $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
                     ->value('admin'); 
             if ($us!=1)  { return redirect('/'); } 
-           
-           
+          
+          
         }
         
          $data = DB::table("tip_pizza")->get();

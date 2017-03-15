@@ -13,9 +13,9 @@
             <tbody> 
                 <tr> <th> Ingrediente :{{$produs->ingrediente}} </th>
                             <th> 
-                                <form class="formnr" method="get">
-                                   <input type="number" id="qty" size="3" min='1'  value="1" onchange="qtynumar()">
-                                </form>      
+                             
+                                   <input type="number" id="qty"  name="qty" size="3" min='1'  value="1" >
+                                  
                             </th>
                      <th> ${{$produs->price}} </th> </tr>
             </tbody>
@@ -36,19 +36,19 @@
       <h3 style="text-align: center;" > Personalizează-ți pizza cu suplimentele preferate:</h3>
       <div class="col-md-6"  >
           <h3 style="margin-left:100px;"> Select size </h3>
-         <form>
+        
              <input style="margin-left:90px;" type="radio" name="size" value="Medium" checked>Medium(8 felii)<br>
   <input style="margin-left:90px;" type="radio" name="size" value="XLarge">Large(12 felii) <br>
     <input  style="margin-left:90px;" type="radio" name="size" value="Party">Party(24 felii) 
-         </form> 
+         
       </div>
       
       <div class="col-md-6" >
           <h3 style="margin-left:70px;">Select Crust Style </h3>
-          <form style="margin-left:70px;">
+         
               <input style="margin-left:50px;" type="radio" name="size" value="Subtire" checked>Blat Subțire<br>
   <input style="margin-left:50px;" type="radio" name="size" value="Gros">Blat Gros<br>
-          </form>
+          
       </div>
       
   </div>
@@ -61,7 +61,7 @@
          
             
             
-              <form> 
+            
             
            
              
@@ -89,16 +89,26 @@
             
          
          
-              </form>
+            
          
            @endforeach
         
      </div>
-     
+
      </div>
+    
       <br>
      
-    <script>
+
+    <div class="butnjos">
+        <p>.</p>
+         <button class="btn btn-success" id="{{$produs->id}}" name="addcart">Add to cart</button>
+   
+        <a style="color:black" href="{{URL("/articleon")}}"> <button type="button"> Cancel</button>  </a>
+      </div>
+     <hr class="hrstyle2">
+      </div>
+        <script>
         $('.imp').on('click' ,function() {
             $("#sup"+this.id).toggle();
             $("#supp"+this.id).toggle();
@@ -106,21 +116,28 @@
         
         function qtynumar() {
             
-    var x = document.getElementById("qty").value;
-      return x;
-  
-}
-    </script>
-    <div class="butnjos">
-        <p>.</p>
-              <a class="btn btn-success" href="{{URL("add-to-cart/".$produs->id)}}">Add to cart</a>
-   
-      <a style="color:black" href="{{URL("/articleon")}}"> <button type="button"> Cancel</button>  </a>
-      </div>
-     <hr class="hrstyle2">
-      </div>
-    
- 
+            var x = document.getElementById("qty").value;
+              return x;
+
+        }
+        $("button[name=addcart]").on("click",function(){
+            $("#fullpageload").show();
+            var idprod=$(this).attr("id");
+            $.ajax({  
+                type: 'get',  
+                url: "{{URL('/addcart')}}", 
+                data: 
+                    { 
+                      id:idprod,
+                      cantitate:$("input[name=qty]").val()
+                    },
+                success: function(data) {
+                  window.location.href="{{URL('/articleon')}}";
+                }
+            });
+        });
+</script>
   @endif
 
+    
   @endsection

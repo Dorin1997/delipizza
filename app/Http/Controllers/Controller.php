@@ -12,6 +12,7 @@ use Image;
 use File;
 use Carbon\Carbon;
 
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -50,9 +51,7 @@ class Controller extends BaseController
         
     }
     
-    public function shopcart(){
-        return view("produse.shopcart");
-    }
+   
   
     
     
@@ -336,7 +335,9 @@ class Controller extends BaseController
     
     
     
+    //cart 
     
+   
     
     
 	}

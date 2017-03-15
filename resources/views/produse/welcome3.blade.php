@@ -40,15 +40,22 @@
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{URL("shopcart")}}"> Shop Cart </a> </li>
+            <li>
+                <a href="{{URL("/shopcart")}}"> Shop Cart 
+                   
+                </a> 
+            </li>
             
         </ul>
          
     </div>
   </div>
 </nav>
-         <!--Cart c;ass cart.php   -->
- 
+        <?php
+session_start(); 
+?>       
+         
+  
     @yield("content3")
     
   <div  style="position: relative;width:100%;margin-left: 0%" class="jos stinga10px footer-distributed ">

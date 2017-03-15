@@ -2,8 +2,7 @@
 @section("content3")
  @if (!empty($produs))
  <div style="margin-top:65px;">
-     
-     
+
      <div>
         <table class="table table-condesed table-striped table-bordered color">
             <thead>
@@ -14,8 +13,8 @@
             <tbody> 
                 <tr> <th> Ingrediente :{{$produs->ingrediente}} </th>
                             <th> 
-                                <form class="formnr">
-                                   <input type="number" size="3" min='1' value="1" >
+                                <form class="formnr" method="get">
+                                   <input type="number" id="qty" size="3" min='1'  value="1" onchange="qtynumar()">
                                 </form>      
                             </th>
                      <th> ${{$produs->price}} </th> </tr>
@@ -104,10 +103,17 @@
             $("#sup"+this.id).toggle();
             $("#supp"+this.id).toggle();
         });
+        
+        function qtynumar() {
+            
+    var x = document.getElementById("qty").value;
+      return x;
+  
+}
     </script>
     <div class="butnjos">
         <p>.</p>
-    <a class="btn btn-success" href="">Add to cart</a>
+              <a class="btn btn-success" href="{{URL("add-to-cart/".$produs->id)}}">Add to cart</a>
    
       <a style="color:black" href="{{URL("/articleon")}}"> <button type="button"> Cancel</button>  </a>
       </div>

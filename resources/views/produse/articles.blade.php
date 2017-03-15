@@ -1,7 +1,7 @@
 @extends("produse.welcome3")
 @section("content3")
 
-   
+
 
 <div class="head" style="margin-top:65px;">
   

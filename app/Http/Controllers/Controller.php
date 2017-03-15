@@ -224,6 +224,18 @@ class Controller extends BaseController
       
       return 'true';
         }   
+        
+     public function newtop(request $a){
+             
+  
+                DB::table('adding')
+                     ->insert(['produs'=>$a->produs,
+                               'pret'=>$a->pret]);
+
+
+
+                    return 'true';
+        }  
   
     public function delpizz(Request $a){
         
@@ -238,22 +250,7 @@ class Controller extends BaseController
       
         return 'true';
     }
-     public function newtop(request $a){
-             
   
-      
-      
-   
-    
-       DB::table('adding')
-               
-               ->insert(['produs'=>$a->produs,
-                         'pret'=>$a->pret]);
-     
-        
-      
-      return 'true';
-        }  
     
         
         public function uploadd(Request $request){

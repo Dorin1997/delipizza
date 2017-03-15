@@ -143,8 +143,11 @@
         </div>
     @endforeach
 
+       
          <script>
+            
         $(".updt").click(function(){
+           
            var id=$(this).attr("id").replace("abc","");
            var z=new FormData($("#update_form"+id)[0]);
            z.append('id',id);

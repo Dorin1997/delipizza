@@ -100,29 +100,22 @@
          
    
    <script>
-            $(".newadd").click(function(){      
-         
-      if (($("#a").val()) || ($("#b").val()))
-      { alert("Introduceti date in formular")}
-      else {
-      
+         $(".newadd").click(function(){ 
+     
         $.ajax({  
             type: 'GET',  
             url: "{{URL('/new-toping')}}", 
             data: 
                 { 
                   produs:$("#a").val(),
-                  pret:$("#b").val(),
+                  pret:$("#b").val()
                 
             
                 },
             success: function(data) {
               if (data==='true'){location.reload();}
-            }
-             }
+           }
         });
-   
-  
    
     }); 
            $(".addbtn").click(function(){      
@@ -135,7 +128,7 @@
             data: 
                 { id:id,
                   produs:$("#a"+id).val(),
-                  pret:$("#b"+id).val(),
+                  pret:$("#b"+id).val()
                 
             
                 },

@@ -64,22 +64,22 @@
         <tr>
             <th>Product</th>
             <th>Price</th>
-            <th>Quantity</th>
+            <th style="padding-left:60px;">Quantity</th>
             <th>Subtotal</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
     <tbody>
         
-       
+       <?php $sumtotal=0; ?>
        @foreach($cart as $i)
         <tr>
         
               <td>{{$i->name }}</td>
               <td>{{$i->price }}</td>
-              <td><input type="number" class="form-control text-center" value="{{$i->cantitate }}" ></td>
+              <td style="padding-left:60px;"><input type="number" class="form-control text-center" value="{{$i->cantitate }}" ></td>
                <td>{{$i->total }}</td>
-         
+         <?php $sumtotal+=$i->total; ?>
             <td>
                 <a  class="btn btn-danger delete" id="{{$i->id}}" ><i class="glyphicon glyphicon-trash"></i></a>
             </td>
@@ -91,7 +91,7 @@
             <td><a href="{{URL('/articleon')}}" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a></td>
             <td colspan="2"></td>
           
-            <td class="text-center"><strong>Total </strong></td>
+            <td class="text-center"><strong>Total  <?php echo $sumtotal; ?> </strong></td>
             <td><a href="checkout.php" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-menu-right"></i></a></td>
            
         </tr>
@@ -110,7 +110,6 @@
      </div>
         <Script>
          $("body").on("click",".delete",function() {
-             
             id=$(this).attr("id");
             $.ajax({  
                 type: 'GET',  

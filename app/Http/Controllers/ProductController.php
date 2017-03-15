@@ -66,4 +66,13 @@ class ProductController extends Controller
        return view('produse.shopcart', ['cart' => $cart]);
     }
     
-  }  
+   
+        
+        
+        
+        
+        
+    }
+    
+    
+    

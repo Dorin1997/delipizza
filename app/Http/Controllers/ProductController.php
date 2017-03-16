@@ -25,7 +25,7 @@ class ProductController extends Controller
         if(!empty($exist) && count($exist) >0 && ($stare==0)){
             DB::Table("orders")->where("user_id",Auth::id())
                     ->where("product_id",$id)
-                     ->update(['updated_at'=> Carbon::Now()])
+                 
                     ->update(['cantitate'=>($exist+$qty)]);
                   
         }else{
@@ -100,7 +100,7 @@ class ProductController extends Controller
         
    public function placeorder()
    {
-       $cart=[];
+       
         if (Auth::guest()) {
             return redirect('/login');
         } 
@@ -110,7 +110,8 @@ class ProductController extends Controller
             DB::Table("orders")
                     ->where("user_id",Auth::id())
                     ->update(['stare'=>1]);
-            
+                  
+       
             $data = DB::table("tip_pizza")->get();
     
         }

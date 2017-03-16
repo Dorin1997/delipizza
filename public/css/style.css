@@ -198,7 +198,7 @@ header{
 	font-size: 11px;
 	width:50.4%;
 	padding: 10px;
-	height: 25px;
+	
 	float:left;
 	margin-top:10px;
         text-align: center;
@@ -463,3 +463,13 @@ td, th {
     margin-left: 40px;
    
 }
+
+.shipdet li{
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.shipdet{
+   padding:30px;
+}
+

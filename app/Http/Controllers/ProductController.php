@@ -8,6 +8,7 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Auth;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -20,15 +21,19 @@ class ProductController extends Controller
         $id=$request->id;
         $qty=$request->cantitate;
         $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("cantitate");
-        if(!empty($exist) && count($exist) >0){
+        $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("stare");
+        if(!empty($exist) && count($exist) >0 && ($stare==0)){
             DB::Table("orders")->where("user_id",Auth::id())
                     ->where("product_id",$id)
+                     ->update(['updated_at'=> Carbon::Now()])
                     ->update(['cantitate'=>($exist+$qty)]);
+                  
         }else{
             DB::Table("orders")->insert([
                 "user_id"=>Auth::id(),
                 "product_id"=>$id,
-                "cantitate"=>$qty
+                "cantitate"=>$qty,
+                "created_at"=>  Carbon::Now()
             ]);
         }
     }
@@ -61,14 +66,59 @@ class ProductController extends Controller
                                
                             })
                    ->where("user_id",Auth::id())
+                   ->where('stare',0)                 
                    ->get();
         }
        return view('produse.shopcart', ['cart' => $cart]);
     }
     
    
+    public function checkout()
+    {
+        $cart=[];
+        if (Auth::guest()) {
+            return redirect('/login');
+        } 
+        else {
+         
+           $cart=DB::Table("tip_pizza")  
+                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->leftJoin("orders",function($join){
+                                $join->on('tip_pizza.id', '=', 'orders.product_id');
+                               
+                            })
+                   ->where("user_id",Auth::id())
+                    ->where("stare",0)                
+                   ->get();
+                            
+           $user=DB::Table("users")
+                   ->where("id",Auth::id())
+                   ->first();
+        }
+       return view('produse.checkout', ['cart' => $cart, 'user'=>$user ]);
+    }
+        
+   public function placeorder()
+   {
+       $cart=[];
+        if (Auth::guest()) {
+            return redirect('/login');
+        } 
+        else
+        {
+          
+            DB::Table("orders")
+                    ->where("user_id",Auth::id())
+                    ->update(['stare'=>1]);
+            
+            $data = DB::table("tip_pizza")->get();
+    
+        }
         
         
+      return view('produse.articles', ['data' => $data]);
+        
+   }
         
         
         

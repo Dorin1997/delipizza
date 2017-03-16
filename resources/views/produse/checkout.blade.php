@@ -92,8 +92,13 @@
             <td colspan="2"></td>
           
             <td class="text-center"><strong>Total  <?php echo $sumtotal; ?> </strong></td>
-            <td><a href="{{URL('/checkout')}}" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-menu-right"></i></a></td>
-           
+            <td><a href="{{URL('/placeorder')}}" class="btn btn-success btn-block" onclick="afisare()" >Place Order <i class="glyphicon glyphicon-menu-right"></i></a></td>
+    <Script>
+        function afisare(){
+            return confirm('Are you sure ?');
+            
+        }
+        </script>
         </tr>
     </tfoot>
     </table>
@@ -102,7 +107,69 @@
     @endif
     </Div>
 
+         
+         <div style="color:White" class="shipdet" > 
+          
+                <h2>  Shipping details </h2>
+                <ul>
+                    <li>Numele => <i> <strong>{{$user->name}}</strong></i></li>
+                    <li>Numarul =><i> <strong> {{$user->number}}</strong></i></li>
+                    <li>Adresa =><i> <strong>{{$user->adr}}</strong></i></li>
 
+                </ul>
+             
+                <button type="button" style="margin-left:15px;" class="btn btn-primary pull-left" data-toggle="modal" data-target="#mod">Modificare date account</button>
+         </div>
+     
+          <div class="modal fade" id="mod" role="dialog">
+          <div class="modal-dialog">
+              
+             
+     <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modificare Date</h4>
+                </div>
+
+         <div class="modal-body">
+                
+
+
+              <table class="tableedit">
+                    <tr>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    <tr>
+                        <td>Name User  </td>
+                        <td><input id="nume" type="text" name="nume" required  value="{{Auth::user() -> name }}" </td>
+                    </tr>
+                    <tr>
+                        <td>Number Phone  </td>
+                        <td> <input type="text" name="nume" required id="number" value="{{Auth::user() ->number}}" </td>
+                    </tr>
+                        <tr>
+                        <td>Address  </td>
+                        <td> <input type="text" name="nume" required id="adre" value="{{Auth::user() ->adr}}" </td>
+                        </td>
+                    </tr>
+              </table>
+
+           
+        </div>
+         
+           <div class="modal-footer">
+            <button class="btn btn-primary pull-left add"  id="{{Auth::user()->id}}" >   Adauga  </button>
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
+          </div>
+         
+    </div>
+          </div>
+           </div>
+        
+       
 	@yield("content")
 		<div class="jos stinga10px ">
 		Copyright © 2016 Delicious Pizza

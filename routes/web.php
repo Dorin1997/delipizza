@@ -19,6 +19,8 @@ Route::get('/login',"Controller@logare");
 Route::get('/order-{id}',"Controller@oneprodus");
 Route::get('shopcart',"ProductController@getCart");
 Route::get('delcart',"ProductController@delcart");
+Route::get('/checkout',"ProductController@checkout");
+Route::get('/placeorder',"ProductController@placeorder");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

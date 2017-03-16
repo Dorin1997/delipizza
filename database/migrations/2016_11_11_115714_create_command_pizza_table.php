@@ -8,7 +8,7 @@ class CreateCommandPizzaTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * shoping cart table
      * @return void
      */
     public function up()
@@ -19,7 +19,7 @@ class CreateCommandPizzaTable extends Migration
             $table->integer('product_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('cantitate')->default(1);
-            $table->boolean("stare")->default(0); // 0-nefinisat ; 1-finisat
+            $table->integer('stare')->default(0);
             $table->timestamps();
             
             });

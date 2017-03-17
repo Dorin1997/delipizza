@@ -36,19 +36,19 @@
       <h3 style="text-align: center;" > Personalizează-ți pizza cu suplimentele preferate:</h3>
       <div class="col-md-6"  >
           <h3 style="margin-left:100px;"> Select size </h3>
-        
-             <input style="margin-left:90px;" type="radio" name="size" value="Medium" checked>Medium(8 felii)<br>
-  <input style="margin-left:90px;" type="radio" name="size" value="XLarge">Large(12 felii) <br>
-    <input  style="margin-left:90px;" type="radio" name="size" value="Party">Party(24 felii) 
+         
+             <input style="margin-left:90px; " type="radio" name="size" id="s1" value="Medium" checked >Medium(8 felii)<br>
+             <input style="margin-left:90px;" type="radio" name="size" id="s2" value="Large" >Large(12 felii)<br>
+             <input style="margin-left:90px;" type="radio" name="size" id="s3" value="Party">Party(24 felii) 
          
       </div>
       
       <div class="col-md-6" >
           <h3 style="margin-left:70px;">Select Crust Style </h3>
+        
+              <input style="margin-left:50px;" type="radio" name="size2" id="b1" value="Subtire" checked >Blat Subțire<br>
+  <input style="margin-left:50px;" type="radio" name="size2" id="b2" value="Gros">Blat Gros<br>
          
-              <input style="margin-left:50px;" type="radio" name="size" value="Subtire" checked>Blat Subțire<br>
-  <input style="margin-left:50px;" type="radio" name="size" value="Gros">Blat Gros<br>
-          
       </div>
       
   </div>
@@ -66,7 +66,7 @@
            
              
             @foreach($elem as $e)
-           
+            <form  name="suplimente">
             <div style="float:left;margin-right: 50px">
          <label style="font-weight: normal;">   <input id="{{$e->id}}" class='imp' type="checkbox"  value=""  >     {{$e->produs}}  </label>
             <span id="sup{{$e->id}}" style='display: none;'>  <small >{{$e->pret}}</small>
@@ -84,7 +84,7 @@
          </span>
             </div>
           
-         
+            </form>
             
             
          
@@ -114,14 +114,26 @@
             $("#supp"+this.id).toggle();
         });
         
-        function qtynumar() {
-            
-            var x = document.getElementById("qty").value;
-              return x;
-
-        }
+    
         $("button[name=addcart]").on("click",function(){
-            $("#fullpageload").show();
+            
+            
+            if (document.getElementById('s1').checked) {
+                size_checked = document.getElementById('s1').value;
+              }
+               if (document.getElementById('s2').checked) {
+                size_checked  = document.getElementById('s2').value;
+              }
+               if (document.getElementById('s3').checked) {
+                size_checked  = document.getElementById('s3').value;
+              }
+            if (document.getElementById('b1').checked) {
+                blat_checked  = document.getElementById('b1').value;
+              }
+              if (document.getElementById('b2').checked) {
+                blat_checked  = document.getElementById('b2').value;
+              }
+           
             var idprod=$(this).attr("id");
             $.ajax({  
                 type: 'get',  
@@ -129,10 +141,12 @@
                 data: 
                     { 
                       id:idprod,
-                      cantitate:$("input[name=qty]").val()
+                      cantitate:$("input[name=qty]").val(),
+                      marime:size_checked,
+                      blat:blat_checked
                     },
                 success: function(data) {
-                  window.location.href="{{URL('/articleon')}}";
+                 window.location.href="{{URL('/articleon')}}";
                 }
             });
         });

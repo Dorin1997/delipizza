@@ -19,6 +19,9 @@ class CreateCommandPizzaTable extends Migration
             $table->integer('product_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('cantitate')->default(1);
+            $table->char('marime',10);
+            $table->char('blat',10);
+            $table->longText('description');
             $table->integer('stare')->default(0);
             $table->timestamps();
             

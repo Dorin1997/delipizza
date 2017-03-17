@@ -20,19 +20,30 @@ class ProductController extends Controller
     public function addcart(Request $request){
         $id=$request->id;
         $qty=$request->cantitate;
+        $marime=$request->description;
+        $blat=$request->blat;
+        
         $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("cantitate");
         $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("stare");
-        if(!empty($exist) && count($exist) >0 && ($stare==0)){
+        $mar=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("marime");
+         $b=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("blat");
+        if(!empty($exist) && count($exist) >0 && ($stare==0) && ($marime==$mar) && ($b==$blat)){
             DB::Table("orders")->where("user_id",Auth::id())
                     ->where("product_id",$id)
-                 
-                    ->update(['cantitate'=>($exist+$qty)]);
+                    
+                    ->update(['cantitate'=>($exist+$qty),
+                             'marime'=>$marime,
+                             'blat'=>$blat
+                            ]);
                   
         }else{
             DB::Table("orders")->insert([
                 "user_id"=>Auth::id(),
                 "product_id"=>$id,
                 "cantitate"=>$qty,
+                "marime"=>$marime,
+                "blat"=>$blat,
+                "descriptn"=>'momentan 0',
                 "created_at"=>  Carbon::Now()
             ]);
         }

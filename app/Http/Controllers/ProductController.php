@@ -20,17 +20,21 @@ class ProductController extends Controller
     public function addcart(Request $request){
         $id=$request->id;
         $qty=$request->cantitate;
-        $marime=$request->description;
+        $marime=$request->marime;
         $blat=$request->blat;
         
-        $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("cantitate");
-        $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("stare");
-        $mar=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("marime");
-         $b=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->value("blat");
-        if(!empty($exist) && count($exist) >0 && ($stare==0) && ($marime==$mar) && ($b==$blat)){
-            DB::Table("orders")->where("user_id",Auth::id())
+        $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("cantitate");
+        $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("stare");
+        $mar=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->value("marime");
+         $b=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("blat",$blat)->value("blat");
+         
+         
+        if(!empty($exist) && count($exist) >0 && ($stare==0) && ($marime==$mar) && ($blat==$b)){
+            DB::Table("orders")
+                    ->where("user_id",Auth::id())
                     ->where("product_id",$id)
-                    
+                    ->where("marime",$marime)
+                    ->where("blat",$blat)
                     ->update(['cantitate'=>($exist+$qty),
                              'marime'=>$marime,
                              'blat'=>$blat
@@ -43,7 +47,7 @@ class ProductController extends Controller
                 "cantitate"=>$qty,
                 "marime"=>$marime,
                 "blat"=>$blat,
-                "descriptn"=>'momentan 0',
+                "description"=>'momentan 0',
                 "created_at"=>  Carbon::Now()
             ]);
         }
@@ -71,7 +75,7 @@ class ProductController extends Controller
         else {
          
            $cart=DB::Table("tip_pizza")  
-                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price','orders.marime','orders.blat',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
                     ->leftJoin("orders",function($join){
                                 $join->on('tip_pizza.id', '=', 'orders.product_id');
                                

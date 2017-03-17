@@ -7,7 +7,7 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
            <style>
     .container{padding: 50px;}
-    input[type="number"]{width: 20%;}
+    input[type="number"]{width: 30%;}
     </style>
       <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"
           <link href="{{asset('/css/bootstrap-theme.css')}}" rel="stylesheet" type="text/css"/>
@@ -65,6 +65,8 @@
             <th>Product</th>
             <th>Price</th>
             <th style="padding-left:60px;">Quantity</th>
+            <th> Marime </th>
+            <th> Blat </th>
             <th>Subtotal</th>
             <th>&nbsp;</th>
         </tr>
@@ -77,7 +79,9 @@
         
               <td>{{$i->name }}</td>
               <td>{{$i->price }}</td>
-              <td style="padding-left:60px;"><input type="number" class="form-control text-center" value="{{$i->cantitate }}" ></td>
+              <td style="padding-left:60px;"><input type="number" class="form-control text-center" size="3" value="{{$i->cantitate }}" ></td>
+              <td >{{$i->marime }}</td>
+              <td>{{$i->blat }}</td>
                <td>{{$i->total }}</td>
          <?php $sumtotal+=$i->total; ?>
             <td>

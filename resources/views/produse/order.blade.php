@@ -64,13 +64,13 @@
             
             
            
-             
+             <form  name="suplimente">
             @foreach($elem as $e)
-            <form  name="suplimente">
+            
             <div style="float:left;margin-right: 50px">
-         <label style="font-weight: normal;">   <input id="{{$e->id}}" class='imp' type="checkbox"  value=""  >     {{$e->produs}}  </label>
+         <label style="font-weight: normal;">   <input id="{{$e->id}}" class='imp' type="checkbox"  name="{{$e->produs}}" value="{{$e->pret}}" >     {{$e->produs}}  </label>
             <span id="sup{{$e->id}}" style='display: none;'>  <small >{{$e->pret}}</small>
-               
+              
              
             </span>
          
@@ -98,10 +98,14 @@
      </div>
     
       <br>
+      <div class="textuser">
+          <p>.</p>
+          <textarea type="textarea" rows="4" style="width:50%;"  name="usertext" >Daca aveti ceva de specificat , o puteti face aici  </textarea>
+      </div>
      
 
     <div class="butnjos">
-        <p>.</p>
+        
          <button class="btn btn-success" id="{{$produs->id}}" name="addcart">Add to cart</button>
    
         <a style="color:black" href="{{URL("/articleon")}}"> <button type="button"> Cancel</button>  </a>

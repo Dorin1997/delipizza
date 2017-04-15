@@ -34,19 +34,20 @@
       <h3 style="text-align: center;" > Personalizează-ți pizza cu suplimentele preferate:</h3>
       <div class="col-md-6"  >
           <h3 style="margin-left:150px;"> Select size </h3>
-         
-             <input style="margin-left:150px; " type="radio" name="size" id="s1" value="Medium" checked >Medium(8 felii)<br>
-             <input style="margin-left:150px;" type="radio" name="size" id="s2" value="Large" >Large(12 felii)<br>
-             <input style="margin-left:150px;" type="radio" name="size" id="s3" value="Party">Party(24 felii) 
-         
+          <ul style=" list-style-type: none;">
+           <li><label>   <input style="margin-left:110px; " type="radio" name="size" id="s1" value="Medium" checked >Medium(8 felii)<br></label></li>
+           <li><label>   <input style="margin-left:110px;" type="radio" name="size" id="s2" value="Large" >Large(12 felii)<br></label></li>
+            <li><label>  <input style="margin-left:110px;" type="radio" name="size" id="s3" value="Party">Party(24 felii) </label></li>
+          </ul>
       </div>
       
       <div class="col-md-6" >
           <h3 style="margin-left:60px;">Select Crust Style </h3>
-        
-              <input style="margin-left:60px;" type="radio" name="size2" id="b1" value="Blat Subtire" checked >Blat Subțire<br>
-              <input style="margin-left:60px;" type="radio" name="size2" id="b2" value="Blat Gros">Blat Gros<br>
-              <input style="margin-left:60px;" type="radio" name="size2" id="b3" value="Deep Dish">Deep Dish<br>     
+          <ul style=" list-style-type: none;">
+                <li><label> <input type="radio" style="margin-left:60px;" name="size2" id="b1" value="Blat Subtire" checked >Blat Subțire<br></label></li>
+                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b2" value="Blat Gros">Blat Gros<br></label></li>
+                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b3" value="Deep Dish">Deep Dish<br> </label>    </li>
+             </ul>
       </div>
      
   </div>
@@ -150,7 +151,8 @@
             myCheckboxes.shift();
             myCheckboxes.shift();
             var supl=myCheckboxes.toString();
-         
+            supl = supl.slice(0, -1);
+           
          var message = $('textarea#message').val();
          
             var idprod=$(this).attr("id");

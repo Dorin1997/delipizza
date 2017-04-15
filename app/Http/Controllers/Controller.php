@@ -81,8 +81,49 @@ class Controller extends BaseController
                 if ($us!=1)  { return redirect('/'); } 
                  }
 
-                 $data = DB::table("tip_pizza")->get();
-                 return view('admin_panel.activcom', ['data' => $data]);
+                 $lista=DB::Table("tip_pizza")  
+                        
+                    ->select('users.id as usid','users.name as usname','users.number','users.adr','orders.cantitate','tip_pizza.id as pzid','tip_pizza.ingrediente', 'tip_pizza.name as pzname','tip_pizza.price','orders.id as orid','orders.suplimente','orders.message','orders.marime','orders.blat',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->leftJoin("orders",function($join){
+                                $join->on('tip_pizza.id', '=', 'orders.product_id');
+                                
+                            })
+                            ->where('stare',1)  
+                    ->leftJoin("users",function($join){
+                                $join->on('users.id', '=' ,'orders.user_id');
+                                
+                            })  
+                            
+                            ->get();
+                 
+                 return view('admin_panel.activcom', ['lista' => $lista]);
+            }
+       
+      public function delivery ()
+            {
+            if (\Auth::guest()) {return redirect('/login'); } 
+            else {
+                $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                        ->value('admin'); 
+                if ($us!=1)  { return redirect('/'); } 
+                 }
+
+                 $lista=DB::Table("users")  
+                        
+                    ->select('users.id as usid','users.name as usname','users.number','users.adr','orders.cantitate','orders.id as orid','orders.suplimente','orders.message','orders.marime','orders.blat')
+                    ->leftJoin("orders",function($join){
+                                $join->on('users.id', '=', 'orders.user_id');
+                                
+                            })
+                           ->groupby(orders.user_id)
+                            ->where('stare',1)  
+                    
+                                
+                           
+                            
+                            ->get();
+                 
+                 return view('admin_panel.delivery', ['lista' => $lista]);
             }
             
      public function inactivcom (){

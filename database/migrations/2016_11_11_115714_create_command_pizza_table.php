@@ -21,7 +21,8 @@ class CreateCommandPizzaTable extends Migration
             $table->integer('cantitate')->default(1);
             $table->char('marime',10);
             $table->char('blat',10);
-            $table->longText('description');
+            $table->longText('suplimente');
+            $table->longText('message')->nullable();
             $table->integer('stare')->default(0);
             $table->timestamps();
             

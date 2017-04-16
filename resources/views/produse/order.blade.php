@@ -101,8 +101,7 @@
           <p>.</p>
           <textarea placeholder="Aici puteti specifica dorintele dumnoavoastra referitor la preparare  "id="message" name="message"rows="4" style="width:50%;"></textarea>
       </div>
-   
-
+    
     <div class="butnjos">
         
          <button class="btn btn-success" id="{{$produs->id}}" name="addcart">Add to cart</button>

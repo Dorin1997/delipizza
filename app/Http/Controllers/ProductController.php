@@ -18,6 +18,7 @@ class ProductController extends Controller
     return view('produse.articles', ['product' => $product]);
     }
     public function addcart(Request $request){
+        
         $id=$request->id;
         $qty=$request->cantitate;
         $marime=$request->marime;
@@ -68,6 +69,7 @@ class ProductController extends Controller
         return 'true';
             
     }
+    
     
     
     public function getCart()
@@ -140,9 +142,41 @@ class ProductController extends Controller
         
    }
         
+      
+   
+   
+   
+   
+       
+      public function finish(Request $request  )
+   {
+       
+        if (Auth::guest()) {
+            return redirect('/login');
+        } 
+        else
+        {
+            
+        }
+          $id=$request->id;
+          
+            DB::Table("orders")
+                    ->where("user_id",$id)
+                    ->update(['stare'=>2]);
+                  
+       $data = DB::table("orders")
+               ->where("stare",2)
+               ->get();
+            
+       return view('admin_panel.inactiv', ['data' => $data]);
+        }    
         
         
-    }
+   
+        
+}
+        
+    
     
     
     

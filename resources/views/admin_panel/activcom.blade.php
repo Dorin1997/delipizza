@@ -3,18 +3,21 @@
 <div class="head" style="margin-top:65px;color:white;">
     @if(!empty($lista) && count($lista)>0)
         @foreach($lista as $i)
-             <h5>
-                 Shipping Details   {{$i["name"]->usname}},{{$i["name"]->number}},{{$i["name"]->adr}}
-             </h5>
+             <h4 >
+                > Shipping Details   {{$i["name"]->usname}},{{$i["name"]->number}},{{$i["name"]->adr}}
+                
+             </h4>
+        <a  class="btn btn-danger send" id="{{$i["name"]->usid}}" ><i class="glyphicon glyphicon-ok"></i></a>
              @foreach($i["produse"] as $j)
-                <h3> Nume Pizza : {{$j->pzname}} </h3>
+                <h5> Nume Pizza : {{$j->pzname}} </h3>
                 <h4>Ingrediente: {{$j->ingrediente}} <br> 
+                    Cantitate: {{$j->cantitate}} <br>
                     Blat :{{$j->blat}} <br>
                     Marimea : {{$j->marime}} <Br> 
                     Suplimente :{{$j->suplimente}} <Br>
                      <?php if ($j->message !='') echo 'User Message :',$j->message ?>  </h4>
                     <br>
-                </h4>
+                </h5>
             @endforeach
             <hr>
         @endforeach 
@@ -22,5 +25,24 @@
     <h1>Nu sunt produse</h1>
     @endif
 </div>
-    
+     <Script>
+         $("body").on("click",".send",function() {
+            usid=$(this).attr("id");
+           
+            $.ajax({  
+                type: 'GET',  
+                url: "{{URL('/finish')}}", 
+                data: 
+                    { 
+                        id:usid
+                    },
+                  
+                success: function(data) {
+                  if (data==='true'){location.reload();}
+                }
+            });
+        });  
+        </script>
+
+
   @endsection

@@ -1,7 +1,7 @@
 @extends("admin_panel.welcome2")
 @section("content2")
 
- 
+<div class="head" style="margin-top:65px;color:white;">
  @foreach($data as $b)
     
         
@@ -24,8 +24,9 @@
           
             <Br>
          </div>
-    
+   
 @endforeach
+ </div>
  <script> 
  
 $("body").on("click",".mod",function() {

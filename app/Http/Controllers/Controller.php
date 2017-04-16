@@ -27,6 +27,7 @@ class Controller extends BaseController
         $data = DB::table("tip_pizza")->get();
     return view('produse.articles', ['data' => $data]);
     }
+  
     
     
   
@@ -46,6 +47,7 @@ class Controller extends BaseController
                 ->first();
         $elem = DB::table("adding")->get();
        
+        
         
         return view("produse.order",["produs"=>$produs,"elem"=>$elem]);
         
@@ -99,24 +101,29 @@ class Controller extends BaseController
             }
             
      public function inactivcom (){
-        if (\Auth::guest()) {
-            return redirect('/login');
-           
-        } 
-        else {
-           
-            $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
-                    ->value('admin'); 
-            if ($us!=1)  { return redirect('/'); } 
-          
-          
-        }
-        
-         $data = DB::table("tip_pizza")->get();
-    return view('admin_panel.inactiv', ['data' => $data]);
-       
-        
-    }
+           if (\Auth::guest()) {return redirect('/login'); } 
+            else {
+                $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
+                        ->value('admin'); 
+                if ($us!=1)  { return redirect('/'); } 
+                 }
+                 
+                 
+                 
+                 $lista=DB::Table("tip_pizza")  
+                    ->select('users.id as usid','users.name as usname','users.number','users.adr','orders.cantitate','tip_pizza.id as pzid', 'tip_pizza.name as pzname','tip_pizza.price','tip_pizza.ingrediente','orders.suplimente','orders.message','orders.id as orid','orders.marime','orders.blat',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->leftJoin('orders','tip_pizza.id', '=', 'orders.product_id')
+                    ->leftJoin('users','users.id', '=' ,'orders.user_id')
+                   ->where('stare',2) 
+                   ->get();
+                $arr=[];
+                foreach($lista as $key => $item)
+                {
+                    $arr[$item->usid]["produse"][$item->orid] = $item;
+                    $arr[$item->usid]["name"] = $item;
+                }
+                 return view('admin_panel.inactiv', ['lista' => $arr]);
+            }
     
   
     
@@ -344,8 +351,6 @@ class Controller extends BaseController
     }
     
     
-    
-    //cart 
     
    
     

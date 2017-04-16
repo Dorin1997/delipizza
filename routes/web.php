@@ -13,6 +13,7 @@
 
 Route::get('/', "Controller@home" );
 Route::get('/articleon',"Controller@arton");
+
 Route::get('/panel',"Controller@articles");
 Route::get('/info',"Controller@info");
 Route::get('/login',"Controller@logare");
@@ -21,6 +22,7 @@ Route::get('shopcart',"ProductController@getCart");
 Route::get('delcart',"ProductController@delcart");
 Route::get('/checkout',"ProductController@checkout");
 Route::get('/placeorder',"ProductController@placeorder");
+Route::get('/finish',"ProductController@finish");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

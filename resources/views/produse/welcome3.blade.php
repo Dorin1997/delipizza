@@ -33,27 +33,19 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
      
-        <li><a href="{{URL("articleon")}}"> Pizza</a></li>
-           <li><a href="{{URl("salate")}}">Salate</a></li>
-        <li><a href="{{URl("desert")}}"> Desert</a></li>
-        <li><a href="{{URl("bauturi")}}"> Bauturi</a></li>
+        <li><a  href="{{URL("articleon")}}">Comanda Online</a></li>
+        <li><a href="{{URL("info")}}">Contact Us</a></li>           
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="{{URL("/shopcart")}}"> Shop Cart 
-                   
-                </a> 
-            </li>
-            
-        </ul>
-         
+             <li><a href="{{URL("/shopcart")}}"> Shop Cart</a> </li> 
+             <li><a href="{{URL("login")}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+             <li><a href="{{URl("/register")}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>   
+       </ul>  
     </div>
   </div>
 </nav>
-        <?php
-session_start(); 
-?>       
+           
          
   
     @yield("content3")

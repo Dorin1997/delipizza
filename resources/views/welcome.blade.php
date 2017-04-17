@@ -37,7 +37,7 @@
        <li><a href="{{URL("info")}}">Contact Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li>   <a href="{{URL("/shopcart")}}"> Shop Cart</a> </li> 
+        <li> <a href="{{URL("/shopcart")}}"><span class="glyphicon glyphicon-shopping-cart"></span> Shop Cart</a></li> 
         <li><a href="{{URL("login")}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="{{URl("/register")}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
       </ul>

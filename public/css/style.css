@@ -29,7 +29,9 @@ header{
 }
 .color{
 	background-color:#259d6d;
-	
+	float:left;
+}
+.color1{
 	float:left;
 }
 #parteadejos{

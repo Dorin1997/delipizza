@@ -36,17 +36,15 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
      
-        <li><a href="{{URL("articleon")}}"> Pizza</a></li>
-           <li><a href="{{URl("salate")}}">Salate</a></li>
-        <li><a href="{{URl("desert")}}"> Desert</a></li>
-        <li><a href="{{URl("bauturi")}}"> Bauturi</a></li>
+        <li><a  href="{{URL("articleon")}}">Comanda Online</a></li>
+        <li><a href="{{URL("info")}}">Contact Us</a></li>         
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="{{URL("/shopcart")}}"> Shop Cart 
-                   
-                </a> 
+                <li> <a href="{{URL("/shopcart")}}"><span class="glyphicon glyphicon-shopping-cart"></span> Shop Cart</a></li> 
+                <li><a href="{{URL("login")}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{{URl("/register")}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
             </li>
             
         </ul>
@@ -65,6 +63,8 @@
             <th>Product</th>
             <th>Price</th>
             <th style="padding-left:60px;">Quantity</th>
+            <th> Marime </th>
+            <th> Blat </th>
             <th>Subtotal</th>
             <th>&nbsp;</th>
         </tr>
@@ -75,9 +75,11 @@
        @foreach($cart as $i)
         <tr>
         
-              <td>{{$i->name }}</td>
+               <td>{{$i->name }}</td>
               <td>{{$i->price }}</td>
-              <td style="padding-left:60px;"><input type="number" class="form-control text-center" value="{{$i->cantitate }}" ></td>
+              <td style="padding-left:80px;">{{$i->cantitate }} </td>
+              <td >{{$i->marime }}</td>
+              <td>{{$i->blat }}</td>
                <td>{{$i->total }}</td>
          <?php $sumtotal+=$i->total; ?>
             <td>
@@ -88,7 +90,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td><a href="{{URL('/articleon')}}" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Continue Shopping</a></td>
+            <td><a href="{{URL('/shopcart')}}" class="btn btn-warning"><i class="glyphicon glyphicon-menu-left"></i> Shop Cart</a></td>
             <td colspan="2"></td>
           
             <td class="text-center"><strong>Total  <?php echo $sumtotal; ?> </strong></td>

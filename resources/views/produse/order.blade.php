@@ -35,18 +35,18 @@
       <div class="col-md-6"  >
           <h3 style="margin-left:150px;"> Select size </h3>
           <ul style=" list-style-type: none;">
-           <li><label>   <input style="margin-left:110px; " type="radio" name="size" id="s1" value="Medium" checked >Medium(8 felii)<br></label></li>
-           <li><label>   <input style="margin-left:110px;" type="radio" name="size" id="s2" value="Large" >Large(12 felii)<br></label></li>
-            <li><label>  <input style="margin-left:110px;" type="radio" name="size" id="s3" value="Party">Party(24 felii) </label></li>
+           <li><label>   <input style="margin-left:110px; " type="radio" name="size" id="s1" value="0" checked >Medium(8 felii)<br></label></li>
+           <li><label>   <input style="margin-left:110px;" type="radio" name="size" id="s2" value="5" >Large(12 felii)<br></label></li>
+            <li><label>  <input style="margin-left:110px;" type="radio" name="size" id="s3" value="10">Party(24 felii) </label></li>
           </ul>
       </div>
       
       <div class="col-md-6" >
           <h3 style="margin-left:60px;">Select Crust Style </h3>
           <ul style=" list-style-type: none;">
-                <li><label> <input type="radio" style="margin-left:60px;" name="size2" id="b1" value="Blat Subtire" checked >Blat Subțire<br></label></li>
-                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b2" value="Blat Gros">Blat Gros<br></label></li>
-                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b3" value="Deep Dish">Deep Dish<br> </label>    </li>
+                <li><label> <input type="radio" style="margin-left:60px;" name="size2" id="b1" value="0" checked >Blat Subțire<br></label></li>
+                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b2" value="5">Blat Gros<br></label></li>
+                <li><label> <input type="radio" style="margin-left:60px;"  name="size2" id="b3" value="10">Deep Dish<br> </label>    </li>
              </ul>
       </div>
      
@@ -67,7 +67,8 @@
             @foreach($elem as $e)
             
             <div style="float:left;margin-right: 50px">
-         <label style="font-weight: normal;">   <input id="{{$e->id}}" class='imp' type="checkbox"  name="myCheckboxes[]" value="{{$e->produs}}" >     {{$e->produs}}  </label>
+         <label style="font-weight: normal;">  
+             <input class='imp' type="checkbox"  name="{{$e->produs}}" value="{{$e->pret}}" > {{$e->produs}} </label>
             <span id="sup{{$e->id}}" style='display: none;'>  <small >{{$e->pret}}</small>
               
              
@@ -145,13 +146,27 @@
            
            var myCheckboxes = new Array();
             $("input:checked").each(function() {
-               myCheckboxes.push($(this).val());
+               myCheckboxes.push();
             });
             myCheckboxes.shift();
             myCheckboxes.shift();
             var supl=myCheckboxes.toString();
             supl = supl.slice(0, -1);
-           
+            
+            
+            var myprice = new Array();
+            $("input:checked").each(function() {
+               myprice.push($(this).val());
+            });
+            
+            
+            var sum = 0;
+                for(var i=0, n=myprice.length; i < n; i++) 
+                { 
+                  sum= (sum+myprice[i]*1);
+                }            
+          
+            
          var message = $('textarea#message').val();
          
             var idprod=$(this).attr("id");
@@ -166,6 +181,7 @@
                       blat:blat_checked,
                       supli:supl,
                       msg:message,
+                      sum:sum,
                     },
                 success: function(data) {
                  window.location.href="{{URL('/articleon')}}";

@@ -40,7 +40,7 @@
 </nav>
     
     @yield("content2")
-    
+   
  <!-- <div class="jos stinga10px ">
 		Copyright © 2016 Delicious Pizza
 		</div>

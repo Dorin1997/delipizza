@@ -20,8 +20,9 @@ class CreateCommandPizzaTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('cantitate')->default(1);
             $table->char('marime',10);
-            $table->char('blat',10);
+            $table->char('blat',12);
             $table->longText('suplimente');
+            $table->integer('sum');
             $table->longText('message')->nullable();
             $table->integer('stare')->default(0);
             $table->timestamps();

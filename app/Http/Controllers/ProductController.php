@@ -25,6 +25,32 @@ class ProductController extends Controller
         $blat=$request->blat;
         $suplimente=$request->supli;
         $msg=$request->msg;
+        $sum=$request->sum;
+        
+        switch ($marime) {
+            case $marime==0:
+               $marime='Mediu';
+                break;
+            case $marime==5:
+               $marime='Large';
+                break;
+            case $marime==10:
+               $marime='Party';
+                
+        }
+        
+          switch ($blat) {
+            case $blat==0:
+               $blat='Blat Subțire';
+                break;
+            case $blat==5:
+               $blat='Blat Gros';
+                break;
+            case $blat==10:
+               $blat='Deep Dish';
+                
+        }
+        
         
         $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("cantitate");
         $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("stare");
@@ -51,6 +77,7 @@ class ProductController extends Controller
                 "blat"=>$blat,
                 "suplimente"=>$suplimente,
                 "message"=>$msg,
+                "sum"=>$sum,
                 "created_at"=>  Carbon::Now()
             ]);
         }
@@ -81,7 +108,7 @@ class ProductController extends Controller
         else {
          
            $cart=DB::Table("tip_pizza")  
-                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price','orders.id','orders.marime','orders.blat',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price','orders.id','orders.marime','orders.sum','orders.blat',DB::raw('(tip_pizza.price*orders.cantitate+orders.sum) AS total'))
                     ->leftJoin("orders",function($join){
                                 $join->on('tip_pizza.id', '=', 'orders.product_id');
                                
@@ -103,7 +130,7 @@ class ProductController extends Controller
         else {
          
            $cart=DB::Table("tip_pizza")  
-                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','tip_pizza.price',DB::raw('(tip_pizza.price*orders.cantitate) AS total'))
+                    ->select('orders.cantitate','tip_pizza.id', 'tip_pizza.name','orders.sum','orders.marime','orders.blat','tip_pizza.price',DB::raw('(tip_pizza.price*orders.cantitate+orders.sum) AS total'))
                     ->leftJoin("orders",function($join){
                                 $join->on('tip_pizza.id', '=', 'orders.product_id');
                                

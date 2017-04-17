@@ -41,7 +41,7 @@
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{URL("/shopcart")}}"> Shop Cart</a> </li> 
+             <li> <a href="{{URL("/shopcart")}}"><span class="glyphicon glyphicon-shopping-cart"></span> Shop Cart</a></li> 
              <li><a href="{{URL("login")}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
              <li><a href="{{URl("/register")}}"><span class="glyphicon glyphicon-user"></span> Register</a></li>    
         </ul>
@@ -73,7 +73,7 @@
         
               <td>{{$i->name }}</td>
               <td>{{$i->price }}</td>
-              <td style="padding-left:60px;"><input type="number" class="form-control text-center" size="3" value="{{$i->cantitate }}" ></td>
+              <td style="padding-left:80px;">{{$i->cantitate }} </td>
               <td >{{$i->marime }}</td>
               <td>{{$i->blat }}</td>
                <td>{{$i->total }}</td>

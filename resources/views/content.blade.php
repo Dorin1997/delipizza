@@ -41,11 +41,12 @@
                        
                            <h3 class="noutati">Noutati si Evenimente</h3>
 				<div >
-					 @foreach($text as $a)
-                                        <span> <hr> {{$a->text}}   
-					</span>
 					
-                                         @endforeach
+                                        <span> <hr>  Daca dati comanda de 5 pizza livrarea este gratis 
+					</span>
+					<span> <hr>  Daca comandati 7 pizza 1 este gratis
+					</span>
+                                         
 				</div>
 
 

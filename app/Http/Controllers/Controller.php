@@ -70,8 +70,11 @@ class Controller extends BaseController
                     $us = DB::table("users")->where('id','=',\Auth::user()->id ) 
                             ->value('admin'); 
                     if ($us!=1)  { return redirect('/'); }  
+                    
+                    $text=DB::table("inf")
+                            ->get();
                  }
-            return view('admin_panel.menuarticles');
+            return view('admin_panel.menuarticles',['text'=>$text]);
         }
     
     public function activcom ()

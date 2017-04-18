@@ -68,7 +68,7 @@
             
             <div style="float:left;margin-right: 50px">
          <label style="font-weight: normal;">  
-             <input class='imp' type="checkbox"  name="{{$e->produs}}" value="{{$e->pret}}" > {{$e->produs}} </label>
+             <input class='imp' type="checkbox"  name="{{$e->produs}}" value="{{$e->pret}}" id="{{$e->id}}" > {{$e->produs}} </label>
             <span id="sup{{$e->id}}" style='display: none;'>  <small >{{$e->pret}}</small>
               
              

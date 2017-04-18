@@ -17,7 +17,7 @@
                                    <input type="number" id="qty"  name="qty" size="3" min='1'  value="1" >
                                   
                             </th>
-                     <th> ${{$produs->price}} </th> </tr>
+                     <th> {{$produs->price}} </th> </tr>
             </tbody>
         </table>  
     </div>
@@ -146,12 +146,12 @@
            
            var myCheckboxes = new Array();
             $("input:checked").each(function() {
-               myCheckboxes.push();
+              myCheckboxes.push($(this).attr('name'));
             });
             myCheckboxes.shift();
             myCheckboxes.shift();
             var supl=myCheckboxes.toString();
-            supl = supl.slice(0, -1);
+            
             
             
             var myprice = new Array();

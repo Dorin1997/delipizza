@@ -479,3 +479,7 @@ td, th {
     margin-left:5%;
 }
 
+.afisareprod{
+    border-style: inset;
+    padding:50px;
+}

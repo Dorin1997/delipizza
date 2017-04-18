@@ -52,13 +52,13 @@ class ProductController extends Controller
         }
         
         
-        $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("cantitate");
-        $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->value("stare");
-        $mar=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->value("marime");
-         $b=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("blat",$blat)->value("blat");
-         $s=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("suplimente",$suplimente)->value("suplimente");
-         
-        if(!empty($exist) && count($exist) >0 && ($stare==0) && ($marime==$mar) && ($blat==$b) && ($s==$suplimente)){
+        $exist=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->where("suplimente",$suplimente)->value("cantitate");
+        $stare=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("marime",$marime)->where("blat",$blat)->where("suplimente",$suplimente)->value("stare");
+        $mar=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("suplimente",$suplimente)->where("marime",$marime)->value("marime");
+          $b=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("suplimente",$suplimente)->where("blat",$blat)->value("blat");
+          $s=DB::table("orders")->where("user_id",Auth::id())->where("product_id",$id)->where("suplimente",$suplimente)->value("suplimente");
+        
+        if(!empty($exist) && count($exist) >0 && ($stare==0) && ($marime==$mar) && ($blat==$b) && ($s===$suplimente)){
             DB::Table("orders")
                     ->where("user_id",Auth::id())
                     ->where("product_id",$id)
@@ -136,7 +136,7 @@ class ProductController extends Controller
                                
                             })
                    ->where("user_id",Auth::id())
-                    ->where("stare",0)                
+                   ->where("stare",0)                
                    ->get();
                             
            $user=DB::Table("users")
@@ -157,6 +157,7 @@ class ProductController extends Controller
           
             DB::Table("orders")
                     ->where("user_id",Auth::id())
+                    ->where("stare",0)
                     ->update(['stare'=>1]);
                   
        

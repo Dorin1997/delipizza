@@ -70,13 +70,12 @@
        <?php $sumtotal=0; ?>
        @foreach($cart as $i)
         <tr>
-        
               <td>{{$i->name }}</td>
               <td>{{$i->price }}</td>
               <td style="padding-left:80px;">{{$i->cantitate }} </td>
               <td >{{$i->marime }}</td>
               <td>{{$i->blat }}</td>
-               <td>{{$i->total }}</td>
+              <td>{{$i->total }}</td>
          <?php $sumtotal+=$i->total; ?>
             <td>
                 <a  class="btn btn-danger delete" id="{{$i->id}}" ><i class="glyphicon glyphicon-trash"></i></a>

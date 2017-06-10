@@ -35,15 +35,13 @@ $("body").on("click",".mod",function() {
      var admin=$(this).attr("name");
       if (admin==='1') {drept=0}else{drept=1}
    
-      
         $.ajax({  
             type: 'GET',  
             url: "{{URL('/upadm')}}", 
             data: 
                 { id:id,
                   adm:drept
-                  
-            
+           
                 },
             success: function(data) {
               if (data==='true'){location.reload();}

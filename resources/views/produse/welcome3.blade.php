@@ -50,7 +50,7 @@
   
     @yield("content3")
     
-  <div  style="position: relative;width:100%;margin-left: 0%" class="jos stinga10px footer-distributed ">
+  <div  style="position: relative;width:100%;margin-left: 0%;margin-top: 90px;" class="jos stinga10px footer-distributed ">
 		Copyright © 2016 Delicious Pizza
 		</div>
  

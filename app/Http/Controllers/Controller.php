@@ -233,19 +233,12 @@ class Controller extends BaseController
         }
           ///// toping
      public function updtop( Request $a){
-             
-  
-   
-      
-   
-    
+ 
        DB::table('adding')
                ->where('id',"=",$a->id)
                ->update(['produs'=>$a->produs,
                          'pret'=>$a->pret]);
      
-        
-      
       return 'true';
         }   
         
@@ -354,11 +347,20 @@ class Controller extends BaseController
         return 'true';
     }
     
-    
+	
+        
+     public function updship(Request $a){
+      DB::table("users")
+              ->where('id',"=",$a->id)
+              ->update(['name'=>$a->nume,
+                        'number'=>$a->number,
+                        'adr'=>$a->adre]);
+      
+        return 'true';
+    }
+}
     
    
-    
-    
-	}
+            
         
-    
+  

@@ -204,12 +204,31 @@ header{
 	float:left;
 	margin-top:10px;
         text-align: center;
-           position: absolute;
-           left: 0;
+      /*     position: absolute;
+    */       left: 0;
           bottom: 0;
      
         
 }
+
+
+.mainfooter{
+    padding-left: 200px;
+	background: #259d6d;
+	color: #dbdbdb;
+	font-size: 11px;
+	width:50.4%;
+	padding: 10px;
+	float:left;
+	margin-top:10px;
+        text-align: center;
+         left: 0;
+          bottom: 0;
+     
+        
+}
+
+
 
 
 .ridicat{
@@ -310,7 +329,9 @@ header{
         .jos{
             visibility: hidden;
         }
-        
+        .mainfooter{
+            visibility: hidden;
+        }
 }
 
 @media screen and (max-width: 695){
@@ -340,6 +361,24 @@ header{
         
         }
     
+}
+
+@media screen and (min-height: 816px) {
+   .mainfooter {
+          position:absolute ;
+            margin-left: 24.8%;
+             width: 50.4%;
+          
+   } 
+}
+
+
+@media screen and (max-height: 815px), screen and (max-width: 720px) {
+       .mainfooter {
+            position:relative;
+            margin-left: 14.8%;
+            width: 70.4%;
+            }     
 }
 
 

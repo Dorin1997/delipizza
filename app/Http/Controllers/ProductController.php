@@ -64,6 +64,7 @@ class ProductController extends Controller
                     ->where("product_id",$id)
                     ->where("marime",$marime)
                     ->where("blat",$blat)
+                    ->where("suplimente",$suplimente)
                     ->update(['cantitate'=>($exist+$qty)
                             
                             ]);

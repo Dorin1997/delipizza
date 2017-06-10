@@ -45,7 +45,7 @@
   </div>
 </nav>
 	@yield("content")
-		<div class="jos stinga10px ">
+		<div class=" mainfooter ">
 		Copyright © 2016 Delicious Pizza
 		</div>
      </div>

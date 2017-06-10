@@ -51,6 +51,7 @@ Route::get('/supldel', 'Controller@supldel');
 
 Route::get('/delete', 'Controller@delpizz');
 Route::get('/updateu', 'Controller@upduser');
+Route::get('/updatesh', 'Controller@updship');
 Route::get('/upadm', 'Controller@modifdrept');
 
 

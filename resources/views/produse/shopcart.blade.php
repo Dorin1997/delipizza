@@ -101,9 +101,7 @@
 
 
 	@yield("content")
-		<div class="jos stinga10px ">
-		Copyright © 2016 Delicious Pizza
-		</div>
+        	
      </div>
         <Script>
          $("body").on("click",".delete",function() {

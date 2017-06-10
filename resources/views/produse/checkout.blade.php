@@ -173,9 +173,7 @@
         
        
 	@yield("content")
-		<div class="jos stinga10px ">
-		Copyright © 2016 Delicious Pizza
-		</div>
+		
      </div>
         <Script>
          $("body").on("click",".delete",function() {
@@ -193,6 +191,28 @@
                 }
             });
         });  
+        
+        
+         $("body").on("click",".add",function() {
+         id=$(this).attr("id");
+        
+         
+        $.ajax({  
+            type: 'GET',  
+            url: "{{URL('/updatesh')}}", 
+            data: 
+                { id:id,
+                  nume:$("#nume").val(),
+                  number:$("#number").val(),
+                  adre:$("#adre").val()
+            
+                },
+            success: function(data) {
+              if (data==='true'){location.reload();}
+            }
+        });
+   
+    });
         </script>
 </body>
 </html>

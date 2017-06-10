@@ -195,8 +195,7 @@
         
          $("body").on("click",".add",function() {
          id=$(this).attr("id");
-        
-         
+
         $.ajax({  
             type: 'GET',  
             url: "{{URL('/updatesh')}}", 
